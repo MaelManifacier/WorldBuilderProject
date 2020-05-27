@@ -15,10 +15,16 @@ const typeDefs = gql`
         id: ID!
         name : String
         firstName : String
+        birthDate : Date
+        birthPlace : String
+        livingPlace : String
+        gender : String
         size : int
         corpulence : String
         traits : [String] # personnalité
+        faults : [String] # défauts
         activities : [String]
+        characteristics : [String]
         past : String
         goals : String # ou aims
         Family : [FamilyMember]
