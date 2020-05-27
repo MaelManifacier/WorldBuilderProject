@@ -1,39 +1,44 @@
-import { gql } from 'apollo-server'
+import { makeExecutableSchema } from 'graphql-tools';
 
-const typeDefs = gql`
-    type User {
-        pseudo : String
-        mail : String
-        mdp : String
-    }
-
-    type Projet {
-        charactersList : [Personnage]
-    }
-
-    type Personnage {
-        id: ID!
-        name : String
-        firstName : String
-        birthDate : Date
-        birthPlace : String
-        livingPlace : String
-        gender : String
-        size : int
-        corpulence : String
-        traits : [String] # personnalité
-        faults : [String] # défauts
-        activities : [String]
-        characteristics : [String]
-        past : String
-        goals : String # ou aims
-        Family : [FamilyMember]
-    }
-
-    type FamilyMember {
-        person : [Personnage]
-        role : String
-    }
+const Query = `
+  type Query {
+    _empty: String
+  }
+  type Mutation {
+    _empty: String
+  }
+  type Subscription {
+    _empty: String
+  }
 `;
 
-module.exports = typeDefs
+const resolvers = {};
+
+import {
+    typeDef as User,
+} from './schema/user.schema';
+
+import {
+    typeDef as Character,
+} from './schema/character.shema';
+
+import {
+    typeDef as FamilyMember,
+} from './schema/familyMember.schema';
+
+import {
+    typeDef as Project,
+} from './schema/project.schema';
+
+import {
+    typeDef as Scenario,
+} from './schema/scenario.schema';
+
+import {
+    typeDef as Step,
+} from './schema/step.schema';
+
+export const schema = makeExecutableSchema({
+    typeDefs : [Query, User, Character, FamilyMember, Project, Scenario, Step],
+    
+})
