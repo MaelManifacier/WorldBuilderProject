@@ -1,5 +1,6 @@
 import { ApolloServer } from 'apollo-server'
-const typeDefs = require('./schema.js')
+const typeDefs = require('./src/schema.js')
+const resolvers = require('./src/resolvers.js')
 
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
