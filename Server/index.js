@@ -1,12 +1,17 @@
-import { ApolloServer } from 'apollo-server'
-const typeDefs = require('./src/schema.js')
-const resolvers = require('./src/resolvers.js')
+import { ApolloServer, gql } from "apollo-server";
+import { schema } from "./src/schema";
 
-// The ApolloServer constructor requires two parameters: your schema
-// definition and your set of resolvers.
-const server = new ApolloServer({ typeDefs });
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
 
-// The `listen` method launches a web server.
+dotenv.config();
+// se connecter à la BDD mongoose
+mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true});
+
+//Pass the schema to ApolloServer
+const server = new ApolloServer({ schema })
+
+//Launch the server
 server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
+  console.log(`==> 🚀  Server ready at ${url} `);
 });

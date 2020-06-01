@@ -1,116 +1,55 @@
+import { merge } from 'lodash';
 import { makeExecutableSchema } from 'graphql-tools';
-import { gql } from 'apollo-server'
 
-const typeDefs = gql`
-    scalar Date
-
-    type User {
-        pseudo : String
-        mail : String
-        mdp : String
-    }
-
-    type Project {
-        characters : [Character]
-        scenarii : [Scenario]
-    }
-
-    type Character {
-        id: ID!
-        name : String
-        firstName : String
-        birthDate : Date
-        birthPlace : String
-        livingPlace : String
-        gender : String
-        size : Int
-        corpulence : String
-        traits : [String] # personnalité
-        faults : [String] # défauts
-        activities : [String]
-        characteristics : [String]
-        past : String
-        goals : String # ou aims
-        Family : [FamilyMember]
-    }
-
-    type FamilyMember {
-        person : [Character]
-        role : String
-    }
-
-    type Scenario {
-        id: ID!
-        description: String
-        etats : [Etat]
-    }
-
-    type Etat {
-        type: String
-        description: String
-    }
-
-    type Query {
-        me: User
-
-        projects: [Project]
-        
-        characters: [Character]
-        character(id: ID!): Character
-    }
-
-    type Mutation {
-        login(pseudo: String, mdp: String): String # token
-
-        addProjects: ProjectResponse!
-        addCharacter(projectID: ID!) : CharacterResponse!
-        deleteCharacter(characterID: ID!) : CharacterResponse!
-        modifyCharacter(characterID: ID!) : CharacterResponse!
-    }
-
-    type ProjectResponse {
-        success: Boolean!
-        message: String
-        project: Project
-    }
-
-    type CharacterResponse {
-        success: Boolean!
-        message: String
-        character: Character
-    }
-`;
-
-/*
-const resolvers = {};
-
+// import des schemas et resolvers
 import {
-    typeDef as User,
+  typeDef as User,
+  resolvers as userResolvers,
 } from './schema/user.schema';
 
 import {
-    typeDef as Character,
-} from './schema/character.shema';
-
-import {
-    typeDef as FamilyMember,
-} from './schema/familyMember.schema';
-
-import {
-    typeDef as Project,
+  typeDef as Project,
+  resolvers as projectResolvers,
 } from './schema/project.schema';
 
 import {
-    typeDef as Scenario,
+  typeDef as Character,
+  resolvers as characterResolvers,
+} from './schema/character.schema';
+
+import {
+  typeDef as Scenario,
+  resolvers as scenarioResolvers,
 } from './schema/scenario.schema';
 
 import {
-    typeDef as Step,
+  typeDef as Step,
+  resolvers as stepResolvers,
 } from './schema/step.schema';
 
-/*export const schema = makeExecutableSchema({
-    typeDefs : [Query, User, Character, FamilyMember, Project, Scenario, Step],
-    
-})*/
+import {
+  typeDef as FamilyMember,
+  resolvers as familyMemberResolvers
+} from './schema/familyMember.schema';
 
-module.exports = typeDefs
+// General query
+const Query = `
+  type Query {
+    _empty: String
+  }
+
+  type Mutation {
+    _empty: String
+  }
+
+  type Subscription {
+    _empty: String
+  }
+`;
+
+const resolvers = {};
+
+export const schema = makeExecutableSchema({
+  typeDefs: [ Query, User, Project, Character, Scenario, Step, FamilyMember],
+  resolvers: merge(resolvers, userResolvers, projectResolvers, characterResolvers, scenarioResolvers, stepResolvers, familyMemberResolvers)
+});
