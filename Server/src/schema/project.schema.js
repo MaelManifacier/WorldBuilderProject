@@ -39,7 +39,6 @@ export const typeDef = `
     createProjectWithInput(input: ProjectInput!): Project
     deleteProject(_id: ID!): Boolean
     updateProject(_id: ID!,input: ProjectInput!): Project
-    # addTaskToProject(_id: ID!,input: TaskInput!): Boolean
     addCharacterToProject(_id: ID!, input: CharacterInput!): Boolean
   }
 `;

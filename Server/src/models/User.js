@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-const dummy = require('mongoose-dummy');
-const ignoredFields = ['_id','created_at', '__v', /detail.*_info/];
+//const dummy = require('mongoose-dummy');
+//const ignoredFields = ['_id','created_at', '__v', /detail.*_info/];
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -9,7 +9,7 @@ const userSchema = new Schema({
   pseudo: String,
   password: String,
   token: String,
-  projects: { type: Schema.Types.ObjectId, ref: 'Project' },
+  projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
 }, {collection:'User'});
 
 

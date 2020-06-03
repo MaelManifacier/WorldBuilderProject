@@ -20,9 +20,35 @@
 
 - - -
 
-Exemples de requêtes :
+Requêter le serveur :
 
-* Mutations :
-mutation {
-  createProject(name: "testProject", description: "testDescription")
+mutation createUser {
+  createUser(pseudo: "unPseudo", password: "leMotDePasse", mail: "leMail@gmail.com") {
+    pseudo
+    mail
+  }
 }
+
+query getAllUsers {
+  users{
+    _id
+    pseudo
+    mail
+    projects {
+      _id
+      name
+      description
+    }
+  }
+}
+
+mutation addProjectToUser {
+  addProjectToUser(_id: "5ed7ce331e7ea628bca195ca", project: {name: "leProjet", description: "uneDescription yes"} ) {
+    pseudo
+    mail
+    projects {
+      _id
+    }
+  }
+}
+
