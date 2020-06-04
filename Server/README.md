@@ -22,13 +22,7 @@
 
 Requêter le serveur :
 
-mutation createUser {
-  createUser(pseudo: "unPseudo", password: "leMotDePasse", mail: "leMail@gmail.com") {
-    pseudo
-    mail
-  }
-}
-
+GET :
 query getAllUsers {
   users{
     _id
@@ -42,8 +36,44 @@ query getAllUsers {
   }
 }
 
+query getAllProjects {
+  projects{
+    _id
+    name
+    description
+    characters {
+      name
+    }
+    userID
+  }
+}
+
+- - -
+
+AJOUT :
+mutation createUser {
+  createUser(pseudo: "unPseudo", password: "leMotDePasse", mail: "leMail@gmail.com") {
+    pseudo
+    mail
+  }
+}
+
+mutation createProject {
+  createProject(name: "unProjet", description: "laDescription", userID: "5ed7ce331e7ea628bca195ca") {
+    _id
+    name
+    description
+    userID
+  }
+}
+
+
+
+
+LES REQUETES QUI NE FONCTIONNENT PAS :
+
 mutation addProjectToUser {
-  addProjectToUser(_id: "5ed7ce331e7ea628bca195ca", project: {name: "leProjet", description: "uneDescription yes"} ) {
+  addProjectToUser(_id: "5ed7ce331e7ea628bca195ca", project: {name: "leProjet", description: "uneDescription yes", userID: "5ed7ce331e7ea628bca195ca"} ) {
     pseudo
     mail
     projects {

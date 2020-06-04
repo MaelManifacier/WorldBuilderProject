@@ -41,11 +41,13 @@ type Character {
     past : String
     aims : [String]
     family : [FamilyMember]
+    projectID : ID
   }
 
   input CharacterInput {
     name: String
     firstName: String
+    projectID : ID
   }
 
   extend type Query {
@@ -55,7 +57,7 @@ type Character {
   }
 
   extend type Mutation {
-    createCharacter(name: String!,firstName: String!): Boolean
+    createCharacter(name: String!,firstName: String!, projectID : ID!): Character
     createCharacterWithInput(input: CharacterInput!): Character
     deleteCharacter(_id: ID!): Boolean
     updateCharacter(_id: ID!,input: CharacterInput!): Character
@@ -69,29 +71,34 @@ export const resolvers = {
       return "Character schema";
     },
     characters: async () => {
-      let characters = [];
+      /*let characters = [];
       for (let index = 0; index < 5; index++) {
         characters.push(dummy(Character, {
           ignore: ignoredFields,
           returnDate: true
         }))
       } 
-      return characters;
+      return characters;*/
+      return await Character.find().populate('family')
     },
     character: async (root, { _id }, context, info) => {
-      return dummy(Character, {
+      /*return dummy(Character, {
         ignore: ignoredFields,
         returnDate: true
-      })
+      })*/
+      return await Character.find({_id}).populate('family')
     },
   },
   Mutation: {
     createCharacter: async (root, args, context, info) => {
-      await Character.create(args);
-      return Character.name;
+      try {
+        let response = await Character.create(args);
+        return response;
+      } catch(e) {
+        return e.message;
+      }
     },
     createCharacterWithInput: async (root, { input }, context, info) => {
-      //input.password = await bcrypt.hash(input.password, 10);
       return Character.create(input);
     },
     deleteCharacter: async (root, { _id }, context, info) => {

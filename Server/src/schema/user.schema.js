@@ -49,7 +49,7 @@ export const resolvers = {
         }))
       }
       return users;*/
-      return await User.find({}).exec()
+      return await User.find().populate('projects') //.exec()
     },
     // Get user by ID
     user: async (root, { _id }, context, info) => {
@@ -69,20 +69,27 @@ export const resolvers = {
       input.password = await bcrypt.hash(input.password, 10);
       return User.create(input);
     },
+    // https://mongoosejs.com/docs/populate.html#populate_multiple_documents
+    // voir à "Refs to children"
     addProjectToUser: async (root, {_id, input}, context, info) => {
-      let user = await User.findOne({_id})
-      let project = await Project.create(input, {
+      let user = await User.findOne({_id});
+      console.log(user)
+      let project
+      try {
+        project = await Project.create(input);
+      } catch(e) {
+        return e.message;
+      }
+      //let project = await Project.findOne({userID : _id});
+      if (project != null) {
+        user.projects.push(project);
+      }
+      /*var project1 = await Project.findByIdAndUpdate(project._id,{
         $push: {
-          projects: project
-        }
-      })
-      /*var project = await Project.findByIdAndUpdate(_id,{
-        $push: {
-          projects: project
+          projects: project1
         }
       })*/
       console.log(project)
-      console.log(user)
       user.save();
       return user;
     },

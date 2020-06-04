@@ -3,13 +3,15 @@ import { FamilyMember } from '../models/FamilyMember'
 export const typeDef = `
     type FamilyMember {
         _id : ID!
-        person : [Character]
+        person : Character
         role : String
+        characterID : ID
     }
 
     input FamilyMemberInput {
         person: CharacterInput
         role: String
+        characterID : ID
     }
 
     extend type Query {
@@ -19,7 +21,7 @@ export const typeDef = `
     }
 
     extend type Mutation {
-        createFamilyMember(person: CharacterInput!, role: String!): Boolean
+        createFamilyMember(person: CharacterInput!, role: String!, characterID : ID!): Boolean
         createFamilyMemberWithInput(input: FamilyMemberInput!): FamilyMember
         deleteFamilyMember(_id: ID!): Boolean
         updateFamilyMember(_id: ID!, person: CharacterInput!, role: String!): FamilyMember
@@ -32,7 +34,7 @@ export const resolvers = {
           return "FamilyMember schema";
         },
         familyMembers: async () => {
-          var familyMembers = await Step.find().populate('familyMembers')
+          var familyMembers = await FamilyMember.find().populate('familyMembers')
           console.log(familyMembers)
           return familyMembers;
         },

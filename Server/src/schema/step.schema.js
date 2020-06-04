@@ -5,11 +5,13 @@ export const typeDef = `
         _id : ID!
         type : String
         description : String
+        scenarioID : ID!
     }
 
     input StepInput {
         type: String
         description: String
+        scenarioID : ID
     }
 
     extend type Query {
@@ -19,7 +21,7 @@ export const typeDef = `
     }
 
     extend type Mutation {
-        createStep(type: String!, description: String!): Boolean
+        createStep(type: String!, description: String!, scenarioID : ID!): Step
         createStepWithInput(input: StepInput!): Step
         deleteStep(_id: ID!): Boolean
         updateStep(_id: ID!, type: String!, description: String!): Step
@@ -42,8 +44,12 @@ export const resolvers = {
       },
       Mutation: {
         createStep: async (root, args, context, info) => {
-          await Step.create(args);
-          return Step.description;
+          try {
+            let response = await Step.create(args);
+            return response;
+          } catch(e) {
+            return e.message;
+          }
         },
         createStepWithInput: async (root, { input }, context, info) => {
           return Step.create(input);

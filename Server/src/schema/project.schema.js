@@ -18,14 +18,16 @@ export const typeDef = `
     _id : ID!
     name : String
     description : String
-    charactersList : [Character]
+    characters : [Character]
     scenarii : [Scenario]
+    userID : ID
   }
 
   # à l'ajout, juste un projet "vide" -> juste nom et description
   input ProjectInput{
     name: String
     description: String
+    userID: ID
   }
 
   extend type Query {
@@ -35,7 +37,7 @@ export const typeDef = `
   }
 
   extend type Mutation {
-    createProject(name: String!,description: String!): Boolean
+    createProject(name: String!,description: String!, userID: ID): Project
     createProjectWithInput(input: ProjectInput!): Project
     deleteProject(_id: ID!): Boolean
     updateProject(_id: ID!,input: ProjectInput!): Project
@@ -58,7 +60,7 @@ export const resolvers = {
         }))
       } */
       var projects = await Project.find().populate('characters')
-      console.log(projects)
+      //console.log(projects)
       return projects;
     },
     project: async (root, { _id }, context, info) => {
@@ -71,11 +73,14 @@ export const resolvers = {
   },
   Mutation: {
     createProject: async (root, args, context, info) => {
-      await Project.create(args);
-      return true;
+      try {
+        let response = await Project.create(args);
+        return response;
+      } catch(e) {
+        return e.message;
+      }
     },
     createProjectWithInput: async (root, { input }, context, info) => {
-      //input.password = await bcrypt.hash(input.password, 10);
       return Project.create(input);
     },
     deleteProject: async (root, { _id }, context, info) => {

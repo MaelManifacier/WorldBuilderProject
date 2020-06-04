@@ -5,10 +5,12 @@ export const typeDef = `
         _id : ID!
         description : String
         steps : [Step] # états
+        projectID : ID
     }
 
     input ScenarioInput {
         description: String
+        projectID : ID
     }
 
     extend type Query {
@@ -18,7 +20,7 @@ export const typeDef = `
     }
 
     extend type Mutation {
-        createScenario(description: String!): Boolean
+        createScenario(description: String!, projectID : ID!): Boolean
         createScenarioWithInput(input: ScenarioInput!): Scenario
         deleteScenario(_id: ID!): Boolean
         updateScenario(_id: ID!, description: String!): Scenario
