@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap';
+import NavbarComponent from '../navigation/Navbar';
+import './user.css'
 
 class LoginComponent extends Component {
     constructor(props) {
@@ -27,29 +29,34 @@ class LoginComponent extends Component {
 
     render() {
         return (
-            <div className="Login">
-                <form onSubmit={() => this.handleSubmit}>
-                <FormGroup controlId="pseudo" bsSize="large">
-                    <FormLabel>Pseudo</FormLabel>
-                    <FormControl
-                        autoFocus
-                        type="pseudo"
-                        value={this.state.pseudo}
-                        onChange={this.handleChange}
-                    />
-                </FormGroup>
-                <FormGroup controlId="password" bsSize="large">
-                    <FormLabel>Password</FormLabel>
-                    <FormControl
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        type="password"
-                    />
-                </FormGroup>
-                <Button block bsSize="large" disabled={!this.validateForm()} type="submit">
-                    Login
-                </Button>
-                </form>
+            <div>
+                <NavbarComponent></NavbarComponent>
+                <div className="Login">
+                    <form className="form" onSubmit={() => this.handleSubmit}>
+                    <FormGroup className="formGroup" controlId="pseudo" bsSize="large">
+                        <FormLabel className="formLabel">PSEUDO</FormLabel>
+                        <FormControl
+                            className="formControl"
+                            autoFocus
+                            type="pseudo"
+                            value={this.state.pseudo}
+                            onChange={this.handleChange}
+                        />
+                    </FormGroup>
+                    <FormGroup className="formGroup" controlId="password" bsSize="large">
+                        <FormLabel className="formLabel">PASSWORD</FormLabel>
+                        <FormControl
+                            className="formControl"
+                            value={this.state.password}
+                            onChange={this.handleChange}
+                            type="password"
+                        />
+                    </FormGroup>
+                    <Button className="btnSubmit" block disabled={!this.validateForm()} type="submit">
+                        LOGIN
+                    </Button>
+                    </form>
+                </div>
             </div>
         );
     }

@@ -6,6 +6,7 @@ import HomePageComponent from './components/common/HomePage';
 import { Switch, Route } from 'react-router-dom'
 import ProjectsHomePageComponent from './components/project/ProjectsHomePage';
 import LoginComponent from './components/user/Login';
+import './App.css'
 
 function App() {
   return (

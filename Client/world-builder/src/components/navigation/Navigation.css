@@ -30,7 +30,7 @@
     align-items: center;
 }
 .appName {
-    background: -webkit-linear-gradient(20deg, #44BBA4, #737272 ); /* #333 */
+    background: -webkit-linear-gradient(20deg, #44BBA4, #acacac ); /* #333 #737272 */
     font-weight: 600;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
