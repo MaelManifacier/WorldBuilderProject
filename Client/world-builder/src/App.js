@@ -5,6 +5,7 @@ import HomePageComponent from './components/common/HomePage';
 
 import { Switch, Route } from 'react-router-dom'
 import ProjectsHomePageComponent from './components/project/ProjectsHomePage';
+import LoginComponent from './components/user/Login';
 
 function App() {
   return (
@@ -13,6 +14,10 @@ function App() {
         {/* ProjectsHomePage : liste des projets d'un utilisateur */}
         <Route path="/projects">
           <ProjectsHomePageComponent />
+        </Route>
+
+        <Route path="/login">
+          <LoginComponent />
         </Route>
 
         {/* ROUTE VERS / EN DERNIER */}
