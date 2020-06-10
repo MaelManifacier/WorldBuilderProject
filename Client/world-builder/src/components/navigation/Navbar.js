@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import './Navigation.css';
+import SideBarComponent from './SideBar';
+import IosMoreOutline from 'react-ionicons/lib/IosMoreOutline'
 
 class NavbarComponent extends Component {
     constructor(props) {
@@ -11,20 +15,29 @@ class NavbarComponent extends Component {
     }
 
     // fonction pour déplier ou replier la sideBar
-    toggleSideBar(){
+    toggleSideBar = () => {
         this.setState({
-            sideBarOpen: !this.sideBarOpen
+            sideBarOpen: !this.state.sideBarOpen
         })
     }
 
     render() {
         return <div>
-            <div className="btnMenu">
-                <IosMoreOutline></IosMoreOutline>
+            <div className="navBar">
+                <Link className="btnSideBar" onClick={() => this.toggleSideBar()}>
+                    <IosMoreOutline className="btnMenu" color="#F6F7EB" fontSize="32px"></IosMoreOutline>
+                    {/*menu*/}
+                </Link>
+                <div className="appNameDiv">
+                    <Link className="appName" onClick={() => this.toggleSideBar()} to="/">WORLD-BUILDER</Link>
+                </div>
+                <div className="btnUserProfileDiv">
+                    <Link className="btnUserProfile" to="/login">username</Link>
+                </div>
             </div>
-            <div className="appName">
-                <span>WORLD-BUILDER</span>
-            </div>
+            { this.state.sideBarOpen &&
+                <SideBarComponent onClick={() => this.toggleSideBar()}></SideBarComponent>
+            }
         </div>
     }
 }

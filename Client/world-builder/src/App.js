@@ -21,6 +21,7 @@ function App() {
         </Route>
 
         {/* ROUTE VERS / EN DERNIER */}
+        {/* TJS METTRE LA ROUTE VERS / EN DERNIER */}
         {/* présentation de l'appli et liens vers authentification */}
         <Route path="/">
           <HomePageComponent />
