@@ -21,15 +21,42 @@ Ajout du router :
 > yarn add react-router-dom
 
 Routes :
-http://localhost:3000/projects : contiendra la liste des projets pour un utilisateur connecté
 http://localhost:3000 : page d'accueil du site web / de l'application - présentation de l'application et liens vers connection / authentification
 
---
+/projects : contiendra la liste des projets pour un utilisateur connecté
+
+
+- - -
+
+
+Pages actuelles (à compléter) dans components :
+
+/common/HomePage.js -> accueil de l'appli, user non authentifié
+
+/navigation/Navbar.js -> future navbar
+    Sidebar.js -> s'ouvrira au clic sur bouton de la navbar
+
+
+/project/AddProjectPage.js
+    DetailProjectPage.js
+    ProjectsHomePage.js
+
+/user/Login.js
+    UserHome.js
+
+
+- - -
+
+
 Actuellement :
 https://github.com/pipic1/Cour-LP-Transverse-Client/tree/client-4-graphql/my-app
 
+- - -
 
+> npm install @material-ui/core @material-ui/icons
 
+https://zamarrowski.github.io/react-ionicons/
+> npm install --save react-ionicons
 
 ### `yarn start`
 

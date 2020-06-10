@@ -1,0 +1,54 @@
+.navBar {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-area: "btnSideBar appNameDiv btnUserProfileDiv";
+    padding: .5em 0;
+    background-color: #393E41; /*#26854C;*/
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btnSideBar {
+    color: #F6F7EB;
+    text-decoration: none;
+    text-align: left;
+    padding-left: 2vw;
+}
+.btnMenu {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    display: flex;
+    align-items: center;
+}
+
+.appNameDiv {
+    text-align: left;
+    padding-left: 2vw;
+    display: flex;
+    align-items: center;
+}
+.appName {
+    background: -webkit-linear-gradient(20deg, #44BBA4, #737272 ); /* #333 */
+    font-weight: 600;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+
+.btnUserProfileDiv {
+    display: flex;
+    align-items: center;
+}
+.btnUserProfile {
+    color: #F6F7EB;
+    text-decoration: none;
+    padding: 0 5vw;
+}
+
+/*- - - SideBar - - -*/
+.sideBar {
+    background-color: #393E41;
+    color: #F6F7EB;
+}
