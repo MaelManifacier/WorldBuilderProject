@@ -5,6 +5,7 @@
     padding: .5em 0;
     background-color: #393E41; /*#26854C;*/
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /*box-shadow: 0 3px 3px #1b1b1b;*/
 }
 
 .btnSideBar {
@@ -51,4 +52,9 @@
 .sideBar {
     background-color: #393E41;
     color: #F6F7EB;
+}
+
+.btnLink {
+    color: #F6F7EB;
+    text-decoration: none;
 }

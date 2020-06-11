@@ -13,7 +13,6 @@ type Project {
 */
 
 export const typeDef = `
-
   type Project {
     _id : ID!
     name : String

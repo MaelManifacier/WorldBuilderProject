@@ -3,6 +3,8 @@
 
 import React, { Component } from 'react';
 import NavbarComponent from '../navigation/Navbar';
+import { Link } from 'react-router-dom'
+import './homePage.css'
 
 class HomePageComponent extends Component {
     render() {
@@ -12,6 +14,9 @@ class HomePageComponent extends Component {
                 Future page d'accueil
                 - devra contenir : une présentation de l'application
                 - un lien vers login ou création de compte
+                <div className="btnToProjects">
+                    <Link className="btnToProjects" to="/projects">your projects</Link>
+                </div>
             </div>
         </div>
     }

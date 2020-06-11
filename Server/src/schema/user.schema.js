@@ -33,6 +33,7 @@ export const typeDef = `
     addProjectToUser(_id: ID!, project: ProjectInput!): User
     deleteUser(_id: ID!): Boolean
     updateUser(_id: ID!,input: UserInput!): User
+    login(pseudo: String!, password: String!): String!
   }
 `;
 
@@ -54,7 +55,7 @@ export const resolvers = {
     // Get user by ID
     user: async (root, { _id }, context, info) => {
       return User.findOne({ _id });
-    },
+    }
   },
   Mutation: {
     createUser: async (root, args, context, info) => {
@@ -67,6 +68,7 @@ export const resolvers = {
     },
     createUserWithInput: async (root, { input }, context, info) => {
       input.password = await bcrypt.hash(input.password, 10);
+      input.token = Buffer.from(input.pseudo).toString('base64');
       return User.create(input);
     },
     // https://mongoosejs.com/docs/populate.html#populate_multiple_documents
@@ -98,6 +100,11 @@ export const resolvers = {
     },
     updateUser: async (root, { _id, input }) => {
       return User.findByIdAndUpdate(_id, input, { new: true });
+    },
+    // la fonction login doit retourner le token utilisateur
+    login: async(root, { pseudo, password }, context, info) => {
+      let user = User.findOne({pseudo, password});
+      return user.token;
     }
   }
 };

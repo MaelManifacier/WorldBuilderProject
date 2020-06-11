@@ -48,6 +48,12 @@ query getAllProjects {
   }
 }
 
+mutation log {
+  login (pseudo: "unPseudo", password: "leMotDePasse") {
+    token
+  }
+}
+
 - - -
 
 AJOUT :
@@ -67,6 +73,10 @@ mutation createProject {
   }
 }
 
+
+mutation deleteProject {
+  deleteProject(_id: "5ed7d098b908833738430dd9") {}
+}
 
 
 

@@ -35,3 +35,77 @@
     letter-spacing: .2em;
     color: black;
 }
+
+
+/* - - - UserHomePage - - - */
+
+.contenuPageUserHome {
+    min-height: 50vh;
+}
+
+.profileDiv {
+    display: flex;
+    justify-content: space-around;
+    padding: 10vh 0;
+}
+
+.imgUser {
+    width: 0;
+    height: 0;
+    border: 25vw solid transparent;
+    border-bottom-color: #13A851;
+    position: relative;
+    top: -25vw;
+}
+.imgUser:after {
+    content: '';
+    position: absolute;
+    left: -25vw;
+    top: 25vw;
+    width: 0;
+    height: 0;
+    border: 25vw solid transparent;
+    border-top-color: #13A851;
+}
+
+.lines {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+.lines div {
+    height: 2px;
+    background-color: #707070;
+}
+.linexs {
+    width: 2vw;
+}
+.linem {
+    width: 5vw;
+}
+.linel {
+    width: 8vw;
+}
+
+@media screen and (min-width: 8in) {
+    .imgUser {
+        width: 0;
+        height: 0;
+        border: 10vw solid transparent;
+        border-bottom-color: #13A851;
+        position: relative;
+        top: -10vw;
+    }
+    .imgUser:after {
+        content: '';
+        position: absolute;
+        left: -10vw;
+        top: 10vw;
+        width: 0;
+        height: 0;
+        border: 10vw solid transparent;
+        border-top-color: #13A851;
+    }
+}
+

@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap';
 import NavbarComponent from '../navigation/Navbar';
+import gql from 'graphql-tag';
 import './user.css'
+
+const LOGIN = gql `
+    mutation login($pseudo: String!, $password: String!) {
+        login(pseudo: $pseudo, password: $password) {
+            pseudo
+            mail
+        }
+  }
+`
 
 class LoginComponent extends Component {
     constructor(props) {
@@ -14,7 +24,13 @@ class LoginComponent extends Component {
     }
 
     validateForm() {
-        return this.state.pseudo.length > 0 && this.state.password.length > 0;
+        if(this.state.pseudo.length > 0 && this.state.password.length > 0) {
+            this.login();
+        }
+    }
+
+    login() {
+        // envoyer la requête pour log in
     }
 
     handleChange = event => {
