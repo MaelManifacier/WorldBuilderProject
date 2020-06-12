@@ -59,10 +59,11 @@ function ProjectList() {
                     <div className="titleProjectCard">
                         {project.name}
                     </div>
-                    <div className="descProjectCard">
+                    <div className="bubble"></div>
+                </div>
+                <div className="descProjectCard">
                         {project.description}
                     </div>
-                </div>
                 <div className="characterNumber">
                     {project.characters.length} characters created
                 </div>

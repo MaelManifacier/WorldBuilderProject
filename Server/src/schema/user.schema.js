@@ -60,7 +60,9 @@ export const resolvers = {
   Mutation: {
     createUser: async (root, args, context, info) => {
       try {
-        let response = await User.create(args);
+        cryptPassword = await bcrypt.hash(password, 10);
+        token = Buffer.from(pseudo).toString('base64');
+        let response = await User.create({args, password: cryptPassword, token});
         return response;
       } catch(e) {
         return e.message;

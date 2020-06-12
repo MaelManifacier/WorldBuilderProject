@@ -33,35 +33,63 @@
     color: rgb(44, 44, 44);
 }
 .projectsDiv {
-    margin-top: 4vh;
+    margin: 4vh 0;
 }
 
 
-ul {
+.projectsListDiv {
     list-style: none;
-    overflow-x: scroll;
+    overflow-x: auto;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
 
     scroll-snap-type: x proximity;
 }
 
-li {
-    width: 500px;
-    max-width: 500px;
-    height: 240px;
-    background-color: #a2caca;
-    margin: 0 2vw;
+.projectCard {
+    max-width: 400px;
+    /*width: 300px;*/
+    min-width: 150px;
+    max-height: 300px;
 
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+    border: 1px solid #585a59;
+    /*background-color: #a2caca;*/
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+
+    padding: 4vh 2vw;
+    margin: 1vh 1vw;
+    
+    -webkit-box-shadow: 6px 4px 6px 0px rgba(237,234,237,1);
+    -moz-box-shadow: 6px 4px 6px 0px rgba(237,234,237,1);
+    box-shadow: 4px 3px 6px 0px rgba(237,234,237,1);
 }
 
 .row1 {
     display: flex;
     justify-content: space-around;
-    padding: 2vw;
+    align-items: center;
+    padding-bottom: 2vw;
 }
+.titleProjectCard {
+    flex: 2;
+}
+
+.bubble {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+
+    -webkit-box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2), inset 0px 10px 20px 5px rgba(57, 62, 65, .8);
+	-moz-box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2), inset 0px 10px 20px 5px rgba(57, 62, 65, .8);
+	box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2), inset 0px 10px 20px 5px rgba(57, 62, 65, .8);
+}
+
