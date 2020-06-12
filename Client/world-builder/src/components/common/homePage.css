@@ -132,15 +132,16 @@
     flex-wrap: wrap;
     padding: 1vh 1vw;
 }
-.conteneurLog div {
+.conteneurLog a {
     margin: 2em;
     padding: .8em 1.2em;
     border: 1px solid rgb(44, 44, 44);
     letter-spacing: .2em;
+    text-decoration: none;
 }
 
 @media screen and (max-width: 8in) {
-    .conteneurLog div {
+    .conteneurLog a {
         margin: .8em;
         border: 1px solid rgb(44, 44, 44);
         letter-spacing: .2em;
