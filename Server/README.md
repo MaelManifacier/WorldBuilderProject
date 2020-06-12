@@ -20,6 +20,10 @@
 
 - - -
 
+> npm install bcrypt
+
+- - -
+
 Requêter le serveur :
 
 GET :
@@ -57,8 +61,9 @@ mutation log {
 - - -
 
 AJOUT :
-mutation createUser {
-  createUser(pseudo: "unPseudo", password: "leMotDePasse", mail: "leMail@gmail.com") {
+
+mutation createUserWithInput{
+  createUserWithInput( input : {pseudo: "pseudo", password: "password", mail: "mail@gmail.com"}) {
     pseudo
     mail
   }
@@ -78,9 +83,20 @@ mutation deleteProject {
   deleteProject(_id: "5ed7d098b908833738430dd9") {}
 }
 
+mutation deleteUser {
+  deleteUser(_id: "5ee37f5f6551f92958aea197") {}
+}
+
 
 
 LES REQUETES QUI NE FONCTIONNENT PAS :
+
+mutation createUser {
+  createUser(pseudo: "unPseudo", password: "leMotDePasse", mail: "leMail@gmail.com") {
+    pseudo
+    mail
+  }
+}
 
 mutation addProjectToUser {
   addProjectToUser(_id: "5ed7ce331e7ea628bca195ca", project: {name: "leProjet", description: "uneDescription yes", userID: "5ed7ce331e7ea628bca195ca"} ) {

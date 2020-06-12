@@ -1,3 +1,152 @@
 .contenuHomePage {
     min-height: 40vh;
+    display: flex;
+    flex-direction: column;
 }
+
+/* - - - 1ere ligne (traits et titre) - - - */
+
+.titleDiv {
+    margin: 4vh 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.trait {
+    width: 25vw;
+    height: 1px;
+    background-color: #707070;
+}
+.titleAccueil {
+    font-size: 20px;
+    font-weight: 300;
+    color: rgb(44, 44, 44);
+}
+
+@media screen and (max-width: 8in) {
+    .trait {
+        width: 10vw;
+    }
+    .titleAccueil {
+        font-size: 18px;
+    }
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - */
+
+
+
+/* - - - Cards - - - */
+
+.conteneurCardsAccueilDiv {
+    display: flex;
+    flex-wrap: wrap;
+}
+.card {
+    width: 300px;
+    height: 200px;
+    padding: 0vh 1vw;
+    margin: 1vh 2vw;
+    background-color: #393E41;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    -webkit-box-shadow: 6px 4px 6px 0px rgba(237,234,237,1);
+    -moz-box-shadow: 6px 4px 6px 0px rgba(237,234,237,1);
+    box-shadow: 4px 3px 6px 0px rgba(237,234,237,1);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.row1Accueil {
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.roundButton {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    margin: 0 .4vw;
+}
+.green {
+    background-color: #05E339;
+}
+.raspberry {
+    background-color: #E30549;
+}
+.blue {
+    background-color: #69A6D5;
+}
+
+.separationLine {
+    width: 95%;
+    background-color: #707070;
+    height: 2px;
+    margin: 0 auto;
+}
+
+
+.AnimLine {
+    font-size: large;
+    animation: clignoter 1.5s linear 1s infinite;
+    -webkit-animation: clignoter 1.5s linear 1s infinite;
+}
+
+@keyframes clignoter {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 8in) {
+    .conteneurCardsAccueilDiv {
+        justify-content: center;
+    }
+    .card {
+        height: 180px;
+        margin: 2vh 0;
+    }
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - */
+
+
+/* - - - Boutons Create account et Log in - - - */
+
+.conteneurLog {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1vh 1vw;
+}
+.conteneurLog div {
+    margin: 2em;
+    padding: .8em 1.2em;
+    border: 1px solid rgb(44, 44, 44);
+    letter-spacing: .2em;
+}
+
+@media screen and (max-width: 8in) {
+    .conteneurLog div {
+        margin: .8em;
+        border: 1px solid rgb(44, 44, 44);
+        letter-spacing: .2em;
+    }
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - */
+

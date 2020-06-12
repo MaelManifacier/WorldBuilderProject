@@ -1,5 +1,6 @@
 import {User} from "../models/User";
 import { Project } from "../models/Project";
+const bcrypt = require('bcrypt')
 // Mock des données :
 //const dummy = require('mongoose-dummy');
 //const ignoredFields = ['_id','created_at', '__v', /detail.*_info/];
@@ -58,11 +59,17 @@ export const resolvers = {
     }
   },
   Mutation: {
-    createUser: async (root, args, context, info) => {
+    createUser: async (root, {pseudo, password, mail}, context, info) => {
       try {
-        cryptPassword = await bcrypt.hash(password, 10);
-        token = Buffer.from(pseudo).toString('base64');
-        let response = await User.create({args, password: cryptPassword, token});
+        let user = new User({
+          pseudo : pseudo,
+          password : await bcrypt.hash(password, 10),
+          mail : mail,
+          token : Buffer.from(pseudo).toString('base64')
+        })
+        //cryptPassword = await bcrypt.hash(password, 10);
+        //token = Buffer.from(pseudo).toString('base64');
+        let response = await User.create(user);
         return response;
       } catch(e) {
         return e.message;

@@ -12,6 +12,7 @@ class HomePageComponent extends Component {
         return <div>
             <NavbarComponent></NavbarComponent>
             <div className="contenuHomePage">
+                {/* 
                 <h1>Bienvenue sur WorldBuilder !</h1>
                 <div className="descriptionApp">
                     Description :
@@ -48,6 +49,41 @@ class HomePageComponent extends Component {
                 </div>
                 <div className="btnToProjects">
                     <Link className="btnToProjects" to="/projects">your projects</Link>
+                </div>
+                */}
+
+                <div className="titleDiv">
+                    <div className="trait"></div>
+                    <div className="titleAccueil">BIENVENUE SUR <span>WORLDBUILDER</span></div>
+                    <div className="trait"></div>
+                </div>
+
+                <div className="conteneurCardsAccueilDiv">
+                    <div className="card">
+                        <div className="row1Accueil">
+                            <div className="roundButton green"></div>
+                            <div className="roundButton raspberry"></div>
+                        </div>
+                        <div className="separationLine"></div>
+                        <div className="row2Accueil">
+                            <p style={{color: '#13CB51'}}> &#62; CREATE YOUR WORLD <span className="AnimLine">_</span></p>
+                        </div>
+                    </div>
+                    <div className="card">
+                        <div className="row1Accueil">
+                            <div className="roundButton blue"></div>
+                            <div className="roundButton raspberry"></div>
+                        </div>
+                        <div className="separationLine"></div>
+                        <div className="row2Accueil">
+                            <p style={{color: '#69A6D5'}}> &#62; IMAGINE YOUR STORIES <span className="AnimLine">_</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="conteneurLog">
+                    <div> &#62; create your account</div>
+                    <div> &#62; log in</div>
                 </div>
             </div>
         </div>
