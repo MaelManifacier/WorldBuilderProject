@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Navigation.css';
 import SideBarComponent from './SideBar';
-import IosMoreOutline from 'react-ionicons/lib/IosMoreOutline'
+import IosMenu from 'react-ionicons/lib/IosMenu'
 
 class NavbarComponent extends Component {
     constructor(props) {
@@ -25,7 +25,8 @@ class NavbarComponent extends Component {
         return <div>
             <div className="navBar">
                 <Link className="btnSideBar" onClick={() => this.toggleSideBar()}>
-                    <IosMoreOutline className="btnMenu" color="#F6F7EB" fontSize="32px"></IosMoreOutline>
+                    {/*<IosMoreOutline className="btnMenu" color="#F6F7EB" fontSize="32px"></IosMoreOutline>*/}
+                    <IosMenu className="btnMenu" color="#F6F7EB" fontSize="32px"></IosMenu>
                     {/*menu*/}
                 </Link>
                 <div className="appNameDiv">

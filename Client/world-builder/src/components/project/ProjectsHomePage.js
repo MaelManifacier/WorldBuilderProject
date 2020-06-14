@@ -1,11 +1,11 @@
 // liste des projets d'un utilisateur connecté
-
 import React, { Component } from 'react';
-
 // pour faire des requêtes à la base :
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import NavbarComponent from '../navigation/Navbar';
+import { Link } from 'react-router-dom'
+import IosAdd from 'react-ionicons/lib/IosAdd'
 import './project.css';
 
 
@@ -56,17 +56,18 @@ function ProjectList() {
         <ul className="projectsListDiv">
             { data.projects.map (project => 
             <li className="projectCard">
-                <div className="row1">
+                <div className="row1ProjectCard">
                     <div className="titleProjectCard">
                         {project.name}
                     </div>
-                    <div className="bubble"></div>
+                    <div className="line"></div>
                 </div>
                 <div className="descProjectCard">
-                        {project.description}
-                    </div>
+                    {truncate(project.description)}
+                </div>
                 <div className="characterNumber">
-                    {project.characters.length} characters created
+                    <p className="characters">CHARACTERS</p>
+                    <p className="charactersNumber">{project.characters.length}</p>
                 </div>
             </li>
             )}
@@ -74,14 +75,35 @@ function ProjectList() {
     )
 }
 
+function truncate(str) {
+    if (str.length > 100) {
+        return str.substring(0, 100) + "...";
+    } else {
+        return str;
+    }
+}
+
 class ProjectsHomePageComponent extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return <div>
             <NavbarComponent></NavbarComponent>
             <div className="contenuProjectsHomePage">
-                <div className="title">
-                    YOUR PROJECTS
+                <div className="titleLine">
+                    <div className="title">
+                        YOUR PROJECTS
+                    </div>
+                    <div className="btnAddProject">
+                        <Link to="/project/add">
+                            {/* IosAddCircle */}
+                            <IosAdd className="btnMenu" color="#E30549" fontSize="42px"></IosAdd>
+                        </Link>
+                    </div>
                 </div>
+                
                 {/*<p>Test de connexion à mongoDB : </p>
                 <CheckConfig></CheckConfig>*/}
                 <div className="projectsDiv">

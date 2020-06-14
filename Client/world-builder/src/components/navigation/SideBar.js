@@ -11,17 +11,17 @@ class SideBarComponent extends Component {
             <List className="sideBar" disablePadding dense>
               <ListItem button>
                 <Link className="btnLink" to="/userHome">
-                  <ListItemText>Profile</ListItemText>
+                  <ListItemText>PROFILE</ListItemText>
                 </Link>
               </ListItem>
               <ListItem button>
                 <Link className="btnLink" to="/projects">
-                  <ListItemText>Projects</ListItemText>
+                  <ListItemText>PROJECTS</ListItemText>
                 </Link>
               </ListItem>
               <ListItem button>
                 <Link className="btnLink" to="/">
-                  <ListItemText>Settings</ListItemText>
+                  <ListItemText>settings</ListItemText>
                 </Link>
               </ListItem>
             </List>

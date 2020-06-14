@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import NavbarComponent from '../navigation/Navbar';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import './user.css'
+
 
 const LOGIN = gql `
     query auth ($mail: String!, $password: String!) {
@@ -47,7 +48,7 @@ class LoginComponent extends Component {
         return (
             <div> 
                 HEY COUCOU
-                <p>data.token</p>
+                <p>{data.token}</p>
             </div>
         )
     }

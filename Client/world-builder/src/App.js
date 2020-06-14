@@ -8,6 +8,8 @@ import ProjectsHomePageComponent from './components/project/ProjectsHomePage';
 import LoginComponent from './components/user/Login'
 import UserHomeComponent from './components/user/UserHome'
 import RegisterComponent from './components/user/Register';
+import AddProjectPageComponent from './components/project/AddProjectPage';
+import DetailProjectPageComponent from './components/project/DetailProjectPage';
 
 function App() {
   return (
@@ -28,6 +30,14 @@ function App() {
 
         <Route path="/userHome">
           <UserHomeComponent />
+        </Route>
+
+        <Route path="/project/add">
+          <AddProjectPageComponent />
+        </Route>
+
+        <Route path="/project/:id">
+          <DetailProjectPageComponent />
         </Route>
 
         {/* ROUTE VERS / EN DERNIER */}

@@ -43,3 +43,18 @@ body {
   background-color: #F9F9F9; /*#333333;
   color: whitesmoke;*/
 }
+
+.background-color-general {
+  background-color: #393E41;
+  color: whitesmoke;
+}
+
+.green {
+  background-color: #05E339;
+}
+.raspberry {
+  background-color: #E30549;
+}
+.blue {
+  background-color: #69A6D5;
+}

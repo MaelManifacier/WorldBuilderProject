@@ -15,11 +15,13 @@
     padding-left: 2vw;
 }
 .btnMenu {
+    /*
     transform: rotate(90deg);
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -o-transform: rotate(90deg);
+    */
     display: flex;
     align-items: center;
 }
@@ -57,4 +59,7 @@
 .btnLink {
     color: #F6F7EB;
     text-decoration: none;
+}
+.btnLink span {
+    font-weight: 300;
 }

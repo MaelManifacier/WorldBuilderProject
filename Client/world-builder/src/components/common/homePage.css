@@ -62,13 +62,13 @@
 }
 
 .row1Accueil {
-    height: 40px;
+    height: 35px;
     display: flex;
     align-items: center;
 }
 .roundButton {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -76,18 +76,9 @@
     -o-border-radius: 50%;
     margin: 0 .4vw;
 }
-.green {
-    background-color: #05E339;
-}
-.raspberry {
-    background-color: #E30549;
-}
-.blue {
-    background-color: #69A6D5;
-}
 
 .separationLine {
-    width: 95%;
+    width: 97%;
     background-color: #707070;
     height: 2px;
     margin: 0 auto;
@@ -120,6 +111,9 @@
         height: 180px;
         margin: 2vh 0;
     }
+    .roundButton {
+        margin: 0 1vw;
+    }
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - */
@@ -136,6 +130,7 @@
     margin: 2em;
     padding: .8em 1.2em;
     border: 1px solid rgb(44, 44, 44);
+    color: rgb(44, 44, 44);
     letter-spacing: .2em;
     text-decoration: none;
 }

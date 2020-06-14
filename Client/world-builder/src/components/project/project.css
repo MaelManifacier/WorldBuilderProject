@@ -26,16 +26,27 @@
     flex-direction: column;
 }
 
+.titleLine {
+    display: flex;
+}
 .title {
+    flex: 3;
     margin: 1em 0;
     padding-left: 10vw;
     font-weight: 300;
     color: rgb(44, 44, 44);
 }
 .projectsDiv {
-    margin: 4vh 0;
+    margin: 1vh 0;
 }
 
+/* - - - Bouton Ajout projet - - - */
+.btnAddProject {
+    margin: 1vh 2vw 0vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .projectsListDiv {
     list-style: none;
@@ -43,16 +54,15 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    padding: 0;
+    margin: 0;
 
     scroll-snap-type: x proximity;
 }
 
 .projectCard {
-    max-width: 400px;
-    /*width: 300px;*/
-    min-width: 150px;
-    max-height: 300px;
-
+    width: 300px;
+    height: 150px;
     border: 1px solid #585a59;
     /*background-color: #a2caca;*/
     border-radius: 2px;
@@ -60,36 +70,92 @@
     -moz-border-radius: 2px;
     -ms-border-radius: 2px;
     -o-border-radius: 2px;
-
-    padding: 4vh 2vw;
-    margin: 1vh 1vw;
-    
     -webkit-box-shadow: 6px 4px 6px 0px rgba(237,234,237,1);
     -moz-box-shadow: 6px 4px 6px 0px rgba(237,234,237,1);
     box-shadow: 4px 3px 6px 0px rgba(237,234,237,1);
+    
+    padding: 2vh 4vw .2vh;
+    margin: 1vh 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
-.row1 {
+.row1ProjectCard {
+    flex: 1;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
-    align-items: center;
     padding-bottom: 2vw;
 }
 .titleProjectCard {
     flex: 2;
+    font-size: 16px;
 }
 
+/*
 .bubble {
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
+    margin: 0 2vw;
+    -webkit-box-shadow: inset 0px 10px 20px 5px rgba(57, 62, 65, .8);
+	-moz-box-shadow: inset 0px 10px 20px 5px rgba(57, 62, 65, .8);
+	box-shadow: inset 0px 10px 20px 5px rgba(57, 62, 65, .8);
+}*/
+.line {
+    width: 20vw;
+    height: 2px;
+    margin: .6vh 0;
+    background-color: #44BBA4;
+}
 
-    -webkit-box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2), inset 0px 10px 20px 5px rgba(57, 62, 65, .8);
-	-moz-box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2), inset 0px 10px 20px 5px rgba(57, 62, 65, .8);
-	box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2), inset 0px 10px 20px 5px rgba(57, 62, 65, .8);
+.descProjectCard {
+    flex: 2.5;
+    color: #4A4A4A;
+    font-size: 14px;
+}
+
+/* - - - troisieme ligne card - - - */
+.characterNumber {
+    display: flex;
+    font-size: 14px;
+}
+.characters {
+    flex: 4;
+}
+.charactersNumber {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+
+@media screen and (max-width: 8in) {
+    .projectCard {
+        margin: 1vh auto;
+    }
+}
+
+
+
+/* - - - Page ajout projet - - - */
+.containerTitreAjoutProjet {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.containerTitreAjoutProjet .linkAddToProjects {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.containerTitreAjoutProjet p {
+    flex: 4;
 }
 
