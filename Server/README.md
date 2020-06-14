@@ -22,6 +22,13 @@
 
 > npm install bcrypt
 
+// génération des token utilisateur
+> npm install jsonwebtoken
+
+middleware ? https://www.apollographql.com/docs/apollo-server/integrations/middleware/
+// middleware -> pour ajouter des infos à la requête (pour authentification)
+> npm install apollo-server-express
+
 - - -
 
 Requêter le serveur :
@@ -57,6 +64,28 @@ mutation log {
     token
   }
 }
+
+# authentification
+query auth {
+  login (mail: "mail@gmail.com", password: "password") {
+    userId
+    token
+    tokenExpiration
+  }
+}
+
+Réponse :
+{
+  "data": {
+    "login": {
+      "userId": "5ee3cc5124b880219c7bb60f",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZWUzY2M1MTI0Yjg4MDIxOWM3YmI2MGYiLCJtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJpYXQiOjE1OTIxNDY2OTUsImV4cCI6MTU5MjE1MDI5NX0.mIfbVMajm-cKAtmheC78htuRGJdHysjcHi3eM_4XImQ",
+      "tokenExpiration": 1
+    }
+  }
+}
+
+
 
 - - -
 

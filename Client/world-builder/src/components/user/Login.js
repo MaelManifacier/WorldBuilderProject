@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap';
 import NavbarComponent from '../navigation/Navbar';
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import './user.css'
 
 const LOGIN = gql `
-    mutation login($pseudo: String!, $password: String!) {
-        login(pseudo: $pseudo, password: $password) {
-            pseudo
-            mail
+    query auth ($mail: String!, $password: String!) {
+        login(mail: $mail, password: $password) {
+            userId
+            token
+            tokenExpiration
         }
   }
 `
@@ -18,45 +20,86 @@ class LoginComponent extends Component {
         super(props);
 
         this.state = {
-            pseudo: "",
-            password: ""
+            mail: '',
+            password: ''
         };
+
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.validateForm = this.validateForm.bind(this);
     }
 
     validateForm() {
-        if(this.state.pseudo.length > 0 && this.state.password.length > 0) {
+        if(this.state.mail.length > 0 && this.state.password.length > 0) {
             this.login();
         }
     }
 
     login() {
         // envoyer la requête pour log in
+        const { loading, error, data } = useQuery(LOGIN)
+
+        if (loading) return <div>
+            Loading
+        </div>
+
+        if (error) return `ERROR : ${error.message}`
+
+        return (
+            <div> 
+                HEY COUCOU
+                <p>data.token</p>
+            </div>
+        )
     }
 
-    handleChange = event => {
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
         this.setState({
-          [event.target.id]: event.target.value
+          [name]: value
         });
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
-    }
+      }
 
     render() {
         return (
             <div>
                 <NavbarComponent></NavbarComponent>
                 <div className="Login">
-                    <form className="form" onSubmit={() => this.handleSubmit}>
-                    <FormGroup className="formGroup" controlId="pseudo" bsSize="large">
-                        <FormLabel className="formLabel">PSEUDO</FormLabel>
+                    <form className="form" onSubmit={() => this.validateForm}>
+                        <div className="formGroup">
+                            <label className="formLabel">
+                                MAIL
+                                <input className="formControl"
+                                    name="mail"
+                                    type="mail"
+                                    autoFocus
+                                    checked={this.state.mail}
+                                    onChange={this.handleInputChange}/>
+                            </label>
+                        </div>
+
+                        <div className="formGroup">
+                            <label className="formLabel">
+                                PASSWORD
+                                <input className="formControl"
+                                    name="password"
+                                    type="password"
+                                    autoFocus
+                                    checked={this.state.password}
+                                    onChange={this.handleInputChange}/>
+                            </label>
+                        </div>
+
+                    {/*
+                    <FormGroup className="formGroup" controlId="mail" bsSize="large">
+                        <FormLabel className="formLabel">MAIL</FormLabel>
                         <FormControl
                             className="formControl"
                             autoFocus
-                            type="pseudo"
-                            value={this.state.pseudo}
-                            onChange={this.handleChange}
+                            type="mail"
+                            value={this.state.mail}
+                            onChange={this.handleInputChange}
                         />
                     </FormGroup>
                     <FormGroup className="formGroup" controlId="password" bsSize="large">
@@ -64,11 +107,12 @@ class LoginComponent extends Component {
                         <FormControl
                             className="formControl"
                             value={this.state.password}
-                            onChange={this.handleChange}
+                            onChange={this.handleInputChange}
                             type="password"
                         />
                     </FormGroup>
-                    <Button className="btnSubmit" block disabled={!this.validateForm()} type="submit">
+                    */}
+                    <Button className="btnSubmit" block type="submit">
                         LOGIN
                     </Button>
                     </form>

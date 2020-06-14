@@ -1,6 +1,7 @@
-import {User} from "../models/User";
+import { User } from "../models/User";
 import { Project } from "../models/Project";
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 // Mock des données :
 //const dummy = require('mongoose-dummy');
 //const ignoredFields = ['_id','created_at', '__v', /detail.*_info/];
@@ -9,23 +10,28 @@ const bcrypt = require('bcrypt')
 export const typeDef = `
   type User {
     _id: ID!
-    pseudo: String
-    password: String
-    mail: String
-    token: String
+    pseudo: String!
+    password: String!
+    mail: String!
     projects: [Project]
   }
 
   input UserInput{
-    pseudo: String
-    password: String
-    mail: String
-    token: String
+    pseudo: String!
+    password: String!
+    mail: String!
+  }
+
+  type UserLoginInfos {
+    userId: ID!
+    token: String!
+    tokenExpiration: Int!
   }
 
   extend type Query {
     users: [User]
     user(_id: ID!): User
+    login(mail: String!, password: String!): UserLoginInfos
   }
 
   extend type Mutation {
@@ -34,7 +40,6 @@ export const typeDef = `
     addProjectToUser(_id: ID!, project: ProjectInput!): User
     deleteUser(_id: ID!): Boolean
     updateUser(_id: ID!,input: UserInput!): User
-    login(pseudo: String!, password: String!): String!
   }
 `;
 
@@ -56,6 +61,26 @@ export const resolvers = {
     // Get user by ID
     user: async (root, { _id }, context, info) => {
       return User.findOne({ _id });
+    },
+    login: async (root, { mail, password }, context, info) => {
+      if (mail === "" || password === "") {
+        throw new Error("Mail and password must not be empty");
+      }
+      // valider mail et password
+      const user = await User.findOne({ mail: mail });
+      if (!user) {
+        throw new Error('unvalid credentials');
+      }
+      const isEqual = await bcrypt.compare(password, user.password);
+      if (!isEqual) {
+        throw new Error('unvalid credentials');
+      }
+      // create le token (dataQueLonVeutMettreDansLeToken, secretKey, tempsExpiration (optionnel))
+      const token = await jwt.sign({userId: user._id, mail: user.mail}, '18FZ8hrFYR/f423gTE', {
+        expiresIn: '1h'
+      })
+      // return le token à l'user
+      return {userId: user.id, token: token, tokenExpiration: 1};
     }
   },
   Mutation: {
@@ -65,7 +90,7 @@ export const resolvers = {
           pseudo : pseudo,
           password : await bcrypt.hash(password, 10),
           mail : mail,
-          token : Buffer.from(pseudo).toString('base64')
+          //token : Buffer.from(pseudo).toString('base64')
         })
         //cryptPassword = await bcrypt.hash(password, 10);
         //token = Buffer.from(pseudo).toString('base64');
@@ -109,11 +134,6 @@ export const resolvers = {
     },
     updateUser: async (root, { _id, input }) => {
       return User.findByIdAndUpdate(_id, input, { new: true });
-    },
-    // la fonction login doit retourner le token utilisateur
-    login: async(root, { pseudo, password }, context, info) => {
-      let user = User.findOne({pseudo, password});
-      return user.token;
     }
   }
 };
