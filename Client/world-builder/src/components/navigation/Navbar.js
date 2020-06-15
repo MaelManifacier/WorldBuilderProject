@@ -24,11 +24,11 @@ class NavbarComponent extends Component {
     render() {
         return <div>
             <div className="navBar">
-                <Link className="btnSideBar" onClick={() => this.toggleSideBar()}>
+                <a className="btnSideBar" onClick={() => this.toggleSideBar()}>
                     {/*<IosMoreOutline className="btnMenu" color="#F6F7EB" fontSize="32px"></IosMoreOutline>*/}
                     <IosMenu className="btnMenu" color="#F6F7EB" fontSize="32px"></IosMenu>
                     {/*menu*/}
-                </Link>
+                </a>
                 <div className="appNameDiv">
                     <Link className="appName" onClick={() => this.toggleSideBar()} to="/">WORLD-BUILDER</Link>
                 </div>

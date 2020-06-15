@@ -2,11 +2,19 @@
 import React, { Component } from 'react';
 // pour faire des requêtes à la base :
 import { useQuery } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import NavbarComponent from '../navigation/Navbar';
 import { Link } from 'react-router-dom'
 import IosAdd from 'react-ionicons/lib/IosAdd'
 import './project.css';
+
+
+const DELETE_PROJECT = gql `
+    mutation delete($id: ID!) {
+        deleteProject(_id: $id)
+    }
+`
 
 
 const GET_PROJECTS = gql `
@@ -42,6 +50,18 @@ function CheckConfig() {
     return <span className="status-ok">OK</span>
 }*/
 
+function DeleteProject(project) {
+    console.log(project._id)
+    const [deleteProject, { loading, error, deleteData }] = useMutation(DELETE_PROJECT);
+
+    if (loading) return <div>
+            Loading
+        </div>
+
+    if (error) return `ERROR : ${error.message}`
+    return null
+}
+
 function ProjectList() {
     const { loading, error, data } = useQuery(GET_PROJECTS)
 
@@ -56,12 +76,21 @@ function ProjectList() {
         <ul className="projectsListDiv">
             { data.projects.map (project => 
             <li className="projectCard">
-                <div className="row1ProjectCard">
-                    <div className="titleProjectCard">
-                        {project.name}
+                    <div className="row1ProjectCard">
+                        <div className="titleProjectCard">
+                            <Link className="linkToProject" to={{
+                                pathname: `/project/${project._id}`,
+                                state: { id: project._id }
+                                }}>
+                                <p>{project.name}</p>
+                            </Link>
+                            <div onClick={() => DeleteProject({project})}>
+                                delete
+                            </div>
+                        </div>
+                        <div className="line"></div>
                     </div>
-                    <div className="line"></div>
-                </div>
+                
                 <div className="descProjectCard">
                     {truncate(project.description)}
                 </div>
@@ -84,10 +113,6 @@ function truncate(str) {
 }
 
 class ProjectsHomePageComponent extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return <div>
             <NavbarComponent></NavbarComponent>

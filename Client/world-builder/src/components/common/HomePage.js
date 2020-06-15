@@ -2,7 +2,6 @@
 // lien vers login ou création de compte
 
 import React, { Component } from 'react';
-import { Button, Card } from 'react-bootstrap';
 import NavbarComponent from '../navigation/Navbar';
 import { Link } from 'react-router-dom'
 import './homePage.css'

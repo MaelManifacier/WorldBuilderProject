@@ -9,6 +9,7 @@ import LoginComponent from './components/user/Login'
 import UserHomeComponent from './components/user/UserHome'
 import RegisterComponent from './components/user/Register';
 import AddProjectPageComponent from './components/project/AddProjectPage';
+import AddCharacterPageComponent from './components/character/AddCharacterPage';
 import DetailProjectPageComponent from './components/project/DetailProjectPage';
 
 function App() {
@@ -38,6 +39,10 @@ function App() {
 
         <Route path="/project/:id">
           <DetailProjectPageComponent />
+        </Route>
+
+        <Route path="/character/add">
+          <AddCharacterPageComponent />
         </Route>
 
         {/* ROUTE VERS / EN DERNIER */}
