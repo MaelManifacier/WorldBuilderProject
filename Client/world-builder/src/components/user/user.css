@@ -15,7 +15,7 @@
 }
 
 .formLabel {
-    margin: 1em 0;
+    margin: .5em 0;
     font-weight: 300;
     color: rgb(44, 44, 44);
     display: flex;
@@ -30,12 +30,21 @@
     background-color: #DCDCDC;
 }
 
+.loginOrCreateAccountDiv {
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+}
 .btnSubmit {
     border: 1px solid rgb(44, 44, 44);
     background-color: transparent;
-    margin: 2em;
+    margin: 1em 1em 1em 0;
     padding: .8em 1.2em;
     letter-spacing: .2em;
+    color: black;
+}
+.loginOrCreateAccountDiv a {
+    text-decoration: none;
     color: black;
 }
 

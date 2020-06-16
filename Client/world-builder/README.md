@@ -51,7 +51,8 @@ Pages actuelles (à compléter) dans components :
 Actuellement :
 https://github.com/pipic1/Cour-LP-Transverse-Client/tree/client-4-graphql/my-app
 
-Pour le scroll :
+Gestion des tokens de connexion :
+https://fr.reactjs.org/docs/context.html
 
 
 - - -

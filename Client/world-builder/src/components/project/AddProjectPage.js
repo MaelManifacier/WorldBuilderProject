@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavbarComponent from '../navigation/Navbar.js'
 import IosArrowBack from 'react-ionicons/lib/IosArrowBack'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { createBrowserHistory } from 'history';
@@ -46,6 +46,9 @@ function AddProject() {
       let route = `/project/${data.createProject._id}`
       console.log(route)
       history.push(route)
+      return (
+        <Redirect to="/projects"/>
+      )
     }
   
     return (

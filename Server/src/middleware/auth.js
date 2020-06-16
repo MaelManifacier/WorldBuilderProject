@@ -1,5 +1,5 @@
 // pour vérifier que le client est connecté et 'laisser passer' ou non la requête
-module.exports = (req, res, next) => {
+let isAuthenticated = (req, next) => {
     // voir si il y a un champ 'Authorization' dans la requête
     const authHeader = req.get('Authorization ');
     if (!authHeader) {
@@ -35,3 +35,5 @@ module.exports = (req, res, next) => {
     req.userId = decodedToken;
     return next();
 }
+
+module.exports = isAuthenticated;

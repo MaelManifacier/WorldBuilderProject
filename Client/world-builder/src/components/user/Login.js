@@ -1,20 +1,95 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
+import { Link, Redirect } from 'react-router-dom'
 import NavbarComponent from '../navigation/Navbar';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks'
+import { useMutation } from '@apollo/react-hooks'
 import gql from 'graphql-tag';
 import './user.css'
 
+import AuthContext from '../../context/auth-context'
 
 const LOGIN = gql `
-    query auth ($mail: String!, $password: String!) {
+    mutation auth ($mail: String!, $password: String!) {
         login(mail: $mail, password: $password) {
             userId
             token
             tokenExpiration
         }
-  }
+    }
 `
+
+function Login() {
+    let mail;
+    let password;
+
+    var contextType = AuthContext;
+
+    // envoyer la requête pour log in
+    const [log, { loading, error, data }] = useMutation(LOGIN);
+
+    if (loading) return <div>
+            Loading
+        </div>
+
+    if (error) return `ERROR : ${error.message}`
+
+    if (data) {
+        contextType.token = data.token;
+        contextType.userId = data.userId
+        //login(data.token, data.userId, data.tokenExpiration)
+        return (
+            <Redirect to="/"/>
+        )
+    }
+  
+    return (
+      <div>
+        <form className="form"
+          onSubmit={e => {
+            e.preventDefault();
+            log({ variables: { mail: mail.value, password: password.value } });
+            mail.value = '';
+            password.value = '';
+          }}>
+            <div className="formGroup">
+                <label className="formLabel">
+                    MAIL
+                    <input className="formControl"
+                        name="mail"
+                        type="mail"
+                        autoFocus
+                        ref={node => {
+                        mail = node;
+                        }}
+                    />
+                </label>
+            </div>
+            <div className="formGroup">
+                <label className="formLabel">
+                    PASSWORD
+                    <input className="formControl"
+                        name="password"
+                        type="password"
+                        ref={node => {
+                        password = node;
+                        }}
+                    />
+                </label>
+            </div>
+            {/*
+            <div className="margin-v-m">
+                <button type="submit" className="btnSubmit">LOGIN</button>
+            </div>
+            */}
+            <div className="loginOrCreateAccountDiv">
+                <button type="submit" className="btnSubmit">LOGIN</button>
+                <Link to="/register">create account</Link>
+            </div>
+        </form>
+      </div>
+    );
+  }
 
 class LoginComponent extends Component {
     constructor(props) {
@@ -24,48 +99,21 @@ class LoginComponent extends Component {
             mail: '',
             password: ''
         };
-
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.validateForm = this.validateForm.bind(this);
     }
 
-    validateForm() {
-        if(this.state.mail.length > 0 && this.state.password.length > 0) {
-            this.login();
-        }
-    }
-
-    login() {
-        // envoyer la requête pour log in
-        const { loading, error, data } = useQuery(LOGIN)
-
-        if (loading) return <div>
-            Loading
-        </div>
-
-        if (error) return `ERROR : ${error.message}`
-
-        return (
-            <div> 
-                HEY COUCOU
-                <p>{data.token}</p>
-            </div>
-        )
-    }
-
-    handleInputChange(event) {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
-        this.setState({
-          [name]: value
-        });
-      }
+    static contextType = AuthContext;
 
     render() {
         return (
             <div>
                 <NavbarComponent></NavbarComponent>
+                <AuthContext.Provider
+                    value={{
+                        state: this.state
+                    }}>
+                    <Login></Login>
+                </AuthContext.Provider>
+                {/*
                 <div className="Login">
                     <form className="form" onSubmit={() => this.validateForm}>
                         <div className="formGroup">
@@ -91,33 +139,15 @@ class LoginComponent extends Component {
                                     onChange={this.handleInputChange}/>
                             </label>
                         </div>
-
-                    {/*
-                    <FormGroup className="formGroup" controlId="mail" bsSize="large">
-                        <FormLabel className="formLabel">MAIL</FormLabel>
-                        <FormControl
-                            className="formControl"
-                            autoFocus
-                            type="mail"
-                            value={this.state.mail}
-                            onChange={this.handleInputChange}
-                        />
-                    </FormGroup>
-                    <FormGroup className="formGroup" controlId="password" bsSize="large">
-                        <FormLabel className="formLabel">PASSWORD</FormLabel>
-                        <FormControl
-                            className="formControl"
-                            value={this.state.password}
-                            onChange={this.handleInputChange}
-                            type="password"
-                        />
-                    </FormGroup>
-                    */}
-                    <Button className="btnSubmit" block type="submit">
-                        LOGIN
-                    </Button>
+                        <div className="loginOrCreateAccountDiv">
+                            <Button className="btnSubmit" block type="submit">
+                                LOGIN
+                            </Button>
+                            <Link to="/register">create account</Link>
+                        </div>
                     </form>
                 </div>
+                */}
             </div>
         );
     }

@@ -33,7 +33,7 @@ class NavbarComponent extends Component {
                     <Link className="appName" onClick={() => this.toggleSideBar()} to="/">WORLD-BUILDER</Link>
                 </div>
                 <div className="btnUserProfileDiv">
-                    <Link className="btnUserProfile" to="/login">username</Link>
+                    <Link className="btnUserProfile" to="/login">Log in</Link>
                 </div>
             </div>
             { this.state.sideBarOpen &&

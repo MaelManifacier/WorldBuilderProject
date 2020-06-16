@@ -31,7 +31,7 @@ export const typeDef = `
   extend type Query {
     users: [User]
     user(_id: ID!): User
-    login(mail: String!, password: String!): UserLoginInfos
+    userProjects(_id: ID!): [Project]
   }
 
   extend type Mutation {
@@ -40,6 +40,7 @@ export const typeDef = `
     addProjectToUser(_id: ID!, project: ProjectInput!): User
     deleteUser(_id: ID!): Boolean
     updateUser(_id: ID!,input: UserInput!): User
+    login(mail: String!, password: String!): UserLoginInfos
   }
 `;
 
@@ -62,25 +63,9 @@ export const resolvers = {
     user: async (root, { _id }, context, info) => {
       return User.findOne({ _id });
     },
-    login: async (root, { mail, password }, context, info) => {
-      if (mail === "" || password === "") {
-        throw new Error("Mail and password must not be empty");
-      }
-      // valider mail et password
-      const user = await User.findOne({ mail: mail });
-      if (!user) {
-        throw new Error('unvalid credentials');
-      }
-      const isEqual = await bcrypt.compare(password, user.password);
-      if (!isEqual) {
-        throw new Error('unvalid credentials');
-      }
-      // create le token (dataQueLonVeutMettreDansLeToken, secretKey, tempsExpiration (optionnel))
-      const token = await jwt.sign({userId: user._id, mail: user.mail}, '18FZ8hrFYR/f423gTE', {
-        expiresIn: '1h'
-      })
-      // return le token à l'user
-      return {userId: user.id, token: token, tokenExpiration: 1};
+    userProjects: async(root, { _id }, context, info) => {
+      const projects = await Project.find({ userID: _id }).exec();
+      return projects;
     }
   },
   Mutation: {
@@ -134,6 +119,26 @@ export const resolvers = {
     },
     updateUser: async (root, { _id, input }) => {
       return User.findByIdAndUpdate(_id, input, { new: true });
+    },
+    login: async (root, { mail, password }, context, info) => {
+      if (mail === "" || password === "") {
+        throw new Error("Mail and password must not be empty");
+      }
+      // valider mail et password
+      const user = await User.findOne({ mail: mail });
+      if (!user) {
+        throw new Error('unvalid credentials');
+      }
+      const isEqual = await bcrypt.compare(password, user.password);
+      if (!isEqual) {
+        throw new Error('unvalid credentials');
+      }
+      // create le token (dataQueLonVeutMettreDansLeToken, secretKey, tempsExpiration (optionnel))
+      const token = await jwt.sign({userId: user._id, mail: user.mail}, '18FZ8hrFYR/f423gTE', {
+        expiresIn: '1h'
+      })
+      // return le token à l'user
+      return {userId: user.id, token: token, tokenExpiration: 1};
     }
   }
 };
