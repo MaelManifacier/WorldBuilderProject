@@ -59,6 +59,10 @@ class App extends Component {
             <RegisterComponent />
           </Route>
 
+          <Route path="/character/add">
+            <AddCharacterPageComponent />
+          </Route>
+
           {/* ProjectsHomePage : liste des projets d'un utilisateur */}
           {this.state.token && 
             <div>
@@ -76,10 +80,6 @@ class App extends Component {
 
               <Route path="/project/:id">
                 <DetailProjectPageComponent />
-              </Route>
-
-              <Route path="/character/add">
-                <AddCharacterPageComponent />
               </Route>
             </div>
           }
