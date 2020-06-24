@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/pipic1/Cour-LP-Transverse-Server#readme",
   "dependencies": {
-    "apollo-server": "^2.12.0",
+    "apollo-server": "^2.14.2",
     "apollo-server-express": "^2.14.4",
     "babel-cli": "^6.26.0",
     "babel-node": "0.0.1-security",
