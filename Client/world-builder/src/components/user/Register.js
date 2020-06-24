@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap';
 import NavbarComponent from '../navigation/Navbar';
 import './user.css'
 import IosArrowBack from 'react-ionicons/lib/IosArrowBack'
@@ -9,28 +8,23 @@ import gql from 'graphql-tag';
 import { createBrowserHistory } from 'history';
 
 const ADD_ACCOUNT = gql `
-  mutation createAccount ($name: String!, $surname: String!, $pseudo: String!, $mail: String!, $password: String!)
-  {
-    createAccount(name: $name, surname: $surname, pseudo: $pseudo, mail: $mail, password: $password) 
-    {
+  mutation createUser ($pseudo: String!, $password: String!, $mail: String!) {
+    createUser(pseudo: $pseudo, password: $password, mail: $mail) {
         _id
-        name
-        surname
         pseudo
         mail
-        password
     }
 }
 `
 
+// userInput : {$pseudo: String!, $password: String!, $mail: String!}
+
 export const history = createBrowserHistory();
 
 function AddAccount() {
-    let name;
-    let surname;
     let pseudo;
-    let mail;
     let password;
+    let mail;
 
     const [addAccount, { loading, error, data }] = useMutation(ADD_ACCOUNT);
 
@@ -41,7 +35,7 @@ function AddAccount() {
     if (error) return `ERROR : ${error.message}`
 
     if (data) {
-      let route = `/user/${data.createAccount._id}`
+      let route = `/user/${data.createUser._id}`
       console.log(route)
       history.push(route)
       return (
@@ -54,38 +48,23 @@ function AddAccount() {
         <form className="form"
           onSubmit={e => {
             e.preventDefault();
-            addAccount({ variables: { name: name.value, surname: surname.value, pseudo: pseudo.value, mail: mail.value, password: password.value } });
-            name.value = '';
-            surname.value = '';
+            addAccount({ variables: { pseudo: pseudo.value, password: password.value, mail: mail.value } });
             pseudo.value = '';
-            mail.value = '';
             password.value = '';
+            mail.value = '';
           }}>
-        <div className="formGroup">
-            <label className="formLabel">
-                NOM
-                <input className="formControl"
-                    name="name"
-                    type="text"
-                    autoFocus
-                    ref={node => {
-                      name = node;
-                    }}
-                />
-            </label>
-        </div>
-        <div className="formGroup">
-            <label className="formLabel">
-                PRENOM
-                <input className="formControl"
-                    name="surname"
-                    type="text"
-                    ref={node => {
-                      surname = node;
-                    }}
-                />
-            </label>
-        </div>
+          <div className="formGroup">
+              <label className="formLabel">
+                  MAIL
+                  <input className="formControl"
+                      name="mail"
+                      type="email"
+                      ref={node => {
+                        mail = node;
+                      }}
+                  />
+              </label>
+          </div>
         <div className="formGroup">
             <label className="formLabel">
                 PSEUDO
@@ -94,18 +73,6 @@ function AddAccount() {
                     type="text"
                     ref={node => {
                       pseudo = node;
-                    }}
-                />
-            </label>
-        </div>
-        <div className="formGroup">
-            <label className="formLabel">
-                MAIL
-                <input className="formControl"
-                    name="mail"
-                    type="email"
-                    ref={node => {
-                      mail = node;
                     }}
                 />
             </label>
@@ -135,11 +102,9 @@ class RegisterComponent extends Component {
         super(props);
 
         this.state = {
-            name: "",
-            surname: "",
             pseudo: "",
-            email: "",
-            password: ""
+            password: "",
+            mail: ""
         };
     }
 

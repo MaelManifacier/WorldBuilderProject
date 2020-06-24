@@ -12,10 +12,7 @@ import AddProjectPageComponent from './components/project/AddProjectPage';
 import AddCharacterPageComponent from './components/character/AddCharacterPage';
 import DetailProjectPageComponent from './components/project/DetailProjectPage';
 
-import requiresAuth from './components/requiresAuth'
-
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+//import requiresAuth from './components/requiresAuth'
 
 import AuthContext from './context/auth-context'
 

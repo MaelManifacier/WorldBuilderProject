@@ -62,7 +62,6 @@
 
 .projectCard {
     width: 300px;
-    max-width: 300px;
     height: 180px;
     /*border: 1px solid #d6d6d6;*/
     border-radius: 2px;
@@ -91,7 +90,7 @@
     flex-direction: column;
     justify-content: space-around;
     padding-bottom: 2vw;
-    background-color: #a2caca; /* #44BBA4 #a2caca */
+    background-color: #B796AC; /* #44BBA4 #a2caca */
     padding: 2vh 4vw .2vh;
 }
 .titleProjectCard {
@@ -127,7 +126,7 @@
 	box-shadow: inset 0px 10px 20px 5px rgba(57, 62, 65, .8);
 }*/
 .line {
-    width: 20vw;
+    width: 60px;
     height: 2px;
     margin: .6vh 0;
     background-color: whitesmoke;
@@ -137,9 +136,27 @@
     flex: 2.5;
     color: #4A4A4A;
     font-size: 14px;
-    background-color: #a2caca; /* #a2caca */
+    background-color: #B796AC; /* #a2caca */
     padding: 0vh 4vw .2vh;
 }
+
+
+@media screen and (min-width: 8in) {
+    .projectCard {
+        width: 360px;
+        height: 240px;
+    }
+    .row1ProjectCard {
+        padding: 1.5vh 1vw .5vh;
+    }
+    .descProjectCard {
+        padding: 0vh 1vw .2vh;
+    }
+    .line {
+        width: 6vw;
+    }
+}
+
 
 /* - - - troisieme ligne card - - - */
 .characterNumber {

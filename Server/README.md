@@ -59,11 +59,30 @@ query getAllProjects {
   }
 }
 
-mutation log {
-  login (pseudo: "unPseudo", password: "leMotDePasse") {
-    token
+query getAllCharacters {
+  characters{
+    _id
+    name
+    firstName
+    birthDate
+    birthPlace
+    livingPlace
+    gender
+    size
+    corpulence
+    traits
+    faults
+    activities
+    characteristics
+    past
+    aims
+    family {
+      _id
+    }
+    projectID
   }
 }
+
 
 # authentification
 query auth {
@@ -93,6 +112,15 @@ AJOUT :
 
 mutation createUserWithInput{
   createUserWithInput( input : {pseudo: "pseudo", password: "password", mail: "mail@gmail.com"}) {
+    _id
+    pseudo
+    mail
+  }
+}
+
+mutation createUser {
+  createUser(pseudo: "lePseudo", password: "lePassword", mail: "leMail@gmail.com") {
+    _id
     pseudo
     mail
   }
@@ -131,6 +159,10 @@ mutation deleteProject {
 
 mutation deleteUser {
   deleteUser(_id: "5ee37f5f6551f92958aea197") {}
+}
+
+mutation deleteCharacter {
+  deleteCharacter(_id: "5ef37a7c11e3fc4640fdde77")
 }
 
 

@@ -52,7 +52,7 @@ function CheckConfig() {
 
 function DeleteProject(project) {
     console.log(project._id)
-    const [deleteProject, { loading, error, deleteData }] = useMutation(DELETE_PROJECT);
+    const [{ loading, error }] = useMutation(DELETE_PROJECT);
 
     if (loading) return <div>
             Loading

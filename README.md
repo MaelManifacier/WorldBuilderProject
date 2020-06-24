@@ -31,17 +31,20 @@ Lancement :
 	mutation deleteProject
 
 - Character :
-	getAll ?
+	getAll
 	mutation createCharacter (avec un projectId)
+	mutation deleteCharacter
 
 
 ###Client :
 - formulaire de login qui envoie le login et mdp et reçoit une auth avec userId, token et tokenExpiration
-- formulaire de register ?
+- formulaire de création de compte
 
 - formulaire d'ajout de projet
 - listing des projets
 
+- formulaire d'ajout de personnage ?
+
 
 A VOIR :
-le formulaire de register
+connexion côté client

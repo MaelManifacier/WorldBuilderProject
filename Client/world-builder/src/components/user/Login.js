@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import NavbarComponent from '../navigation/Navbar';
-import { useQuery } from '@apollo/react-hooks'
+import NavbarComponent from '../navigation/Navbar'
 import { useMutation } from '@apollo/react-hooks'
-import gql from 'graphql-tag';
+import gql from 'graphql-tag'
 import './user.css'
 
 import AuthContext from '../../context/auth-context'
@@ -23,7 +21,7 @@ function Login() {
     let mail;
     let password;
 
-    var contextType = AuthContext;
+    //var contextType = AuthContext;
 
     // envoyer la requête pour log in
     const [log, { loading, error, data }] = useMutation(LOGIN);
