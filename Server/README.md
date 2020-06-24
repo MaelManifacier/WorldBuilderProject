@@ -108,11 +108,21 @@ mutation createProject {
 }
 
 mutation createCharacter {
-  createCharacter(name: "unCharacter", projectID: "5ed7ce331e7ea628bca195ca") {
-    _id
-    name
-    projectID
-  }
+    createCharacter(name: "NamePerso", firstName: "FirstnamePerso", birthDate:"01/01/2020", birthPlace: "ici", livingPlace: "pas beaucoup plus loin", 
+      gender: "F", size: 150, corpulence: "fat", past: "hier j'ai mangé des nouilles", projectID: "5ee670361261f824d0b3c59f") 
+    {
+        _id
+        name
+        firstName
+        birthDate
+        birthPlace
+        livingPlace
+        gender
+        size
+        corpulence
+        past
+        projectID
+    }
 }
 
 mutation deleteProject {

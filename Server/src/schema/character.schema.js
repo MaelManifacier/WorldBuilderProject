@@ -57,7 +57,7 @@ type Character {
   }
 
   extend type Mutation {
-    createCharacter(name: String!,firstName: String!, projectID : ID!): Character
+    createCharacter(name: String!,firstName: String!, birthDate: Date, birthPlace: String, livingPlace:String, gender:String, size:Int, corpulence:String, past:String, projectID : ID!): Character
     createCharacterWithInput(input: CharacterInput!): Character
     deleteCharacter(_id: ID!): Boolean
     updateCharacter(_id: ID!,input: CharacterInput!): Character

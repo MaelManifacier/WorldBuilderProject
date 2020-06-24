@@ -96,8 +96,6 @@ class App extends Component {
 
           {/* ProjectsHomePage : liste des projets d'un utilisateur 
           <Route path="/app" component={requiresAuth(App)}>*/}
-            <div>
-              {this.state.token}
               <Route path="/projects">
                 <ProjectsHomePageComponent />
               </Route>
@@ -117,7 +115,6 @@ class App extends Component {
               <Route path="/character/add">
                 <AddCharacterPageComponent />
               </Route>
-            </div>
           {/*</Route>*/}
 
           {!this.tokenAuth && 
