@@ -35,14 +35,15 @@ function Login() {
     if (error) return `ERROR : ${error.message}`
 
     if (data) {
-        contextType.token = data.token;
-        contextType.userId = data.userId
+        localStorage.setItem('token', data.token);
+        //contextType.token = data.token;
+        //contextType.userId = data.userId
         //login(data.token, data.userId, data.tokenExpiration)
         return (
             <Redirect to="/"/>
         )
     }
-  
+
     return (
       <div>
         <form className="form"

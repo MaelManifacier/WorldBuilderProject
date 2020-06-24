@@ -12,18 +12,36 @@ import AddProjectPageComponent from './components/project/AddProjectPage';
 import AddCharacterPageComponent from './components/character/AddCharacterPage';
 import DetailProjectPageComponent from './components/project/DetailProjectPage';
 
+import requiresAuth from './components/requiresAuth'
+
+import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
+
 import AuthContext from './context/auth-context'
+
+/*
+const IS_AUTHENTICATED = gql `
+{
+    me (token: String!) {
+        _id
+    }
+}
+`*/
 
 class App extends Component {
   constructor(props) {
     super(props);
 
+    let tokenAuth = (localStorage.getItem('token') != null ? true : false);
+
     this.state = {
-      token: null,
+      token: tokenAuth,
       userId: null
     }
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
+
+    this.isAuthenticated = this.isAuthenticated.bind(this);
   }
   
   // on mappe en-dessous le contexte sur ces fonctions
@@ -32,6 +50,23 @@ class App extends Component {
       token: token,
       userId: userId
     })
+  }
+
+  isAuthenticated() {
+    if (localStorage.getItem('token') != null) {
+      /*
+      const { loading, error, data } = useQuery(IS_AUTHENTICATED)
+
+      if (loading) return <div>
+          Loading
+      </div>
+  
+      if (error) return `ERROR : ${error.message}`
+  
+      return (
+        <div>YAAAAY</div>
+      )*/
+    }
   }
 
   logout() {
@@ -59,13 +94,10 @@ class App extends Component {
             <RegisterComponent />
           </Route>
 
-          <Route path="/character/add">
-            <AddCharacterPageComponent />
-          </Route>
-
-          {/* ProjectsHomePage : liste des projets d'un utilisateur */}
-          {this.state.token && 
+          {/* ProjectsHomePage : liste des projets d'un utilisateur 
+          <Route path="/app" component={requiresAuth(App)}>*/}
             <div>
+              {this.state.token}
               <Route path="/projects">
                 <ProjectsHomePageComponent />
               </Route>
@@ -74,25 +106,29 @@ class App extends Component {
                 <UserHomeComponent />
               </Route>
 
-              <Route path="/project/add">
+              <Route path="/addProject">
                 <AddProjectPageComponent />
               </Route>
 
               <Route path="/project/:id">
                 <DetailProjectPageComponent />
               </Route>
-            </div>
-          }
 
-          {!this.state.token && 
+              <Route path="/character/add">
+                <AddCharacterPageComponent />
+              </Route>
+            </div>
+          {/*</Route>*/}
+
+          {!this.tokenAuth && 
               <Redirect from="/projects" to="/login" exact />
           }
 
-          {!this.state.token &&
+          {!this.tokenAuth &&
               <Redirect from="/userHome" to="/login" exact />
           }
 
-          {this.state.token && 
+          {this.tokenAuth && 
             <Redirect from="/register" to="/projects" exact />
           }
 

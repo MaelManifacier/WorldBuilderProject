@@ -107,6 +107,13 @@ mutation createProject {
   }
 }
 
+mutation createCharacter {
+  createCharacter(name: "unCharacter", projectID: "5ed7ce331e7ea628bca195ca") {
+    _id
+    name
+    projectID
+  }
+}
 
 mutation deleteProject {
   deleteProject(_id: "5ed7d098b908833738430dd9") {}

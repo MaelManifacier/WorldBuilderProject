@@ -122,7 +122,7 @@ class ProjectsHomePageComponent extends Component {
                         YOUR PROJECTS
                     </div>
                     <div className="btnAddProject">
-                        <Link to="/project/add">
+                        <Link to="/addProject">
                             {/* IosAddCircle */}
                             <IosAdd className="btnMenu" color="#E30549" fontSize="42px"></IosAdd>
                         </Link>
