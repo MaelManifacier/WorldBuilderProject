@@ -50,7 +50,7 @@
     position: absolute;
     background-color: #F9F9F9;
     min-width: 160px;
-    margin: 2vh 5vw 0 0;
+    margin: 10vh 40vw 0 0;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -62,6 +62,13 @@
 }
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block;}
+.dropdown:active .dropdown-content {display: block;}
+
+@media screen and (min-width: 8in) {
+    .dropdown-content {
+        margin: 2vh 5vw 0 0;
+    }
+}
 
 
 /* - - - Bouton Ajout projet - - - */
@@ -97,7 +104,7 @@
 
 .projectCard {
     width: 300px;
-    height: 170px;
+    height: 200px;
     /*border: 1px solid #d6d6d6;*/
     margin: 2vh 2vw;
     display: flex;
@@ -209,18 +216,18 @@
 
 
 /* - - - Page ajout projet - - - */
-.containerTitreAjoutProjet {
+.containerTitreAjout {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
-.containerTitreAjoutProjet .linkAdd {
+.containerTitreAjout .linkAdd {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.containerTitreAjoutProjet p {
+.containerTitreAjout p {
     flex: 4;
 }
 
@@ -270,6 +277,11 @@
 }
 .characterCardRow :nth-child(2) {
     flex : 1;
+}
+
+.scenariosCard {
+    margin: 0 5vw;
+    padding: 1em;
 }
 
 

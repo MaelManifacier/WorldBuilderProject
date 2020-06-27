@@ -75,7 +75,7 @@ class AddCharacterPageComponent extends Component {
   
     return (
         <div>
-          <form className="form"
+          <form className="generalForm"
             onSubmit={e => {
               e.preventDefault();
               addCharacter({ variables: { name: name.value, firstName: firstName.value, birthDate: birthDate.value, birthPlace: birthPlace.value, 
@@ -91,10 +91,10 @@ class AddCharacterPageComponent extends Component {
               past.value = '';
               projectID = this.state.projectID;
             }}>
-          <div className="formGroup">
-              <label className="formLabel">
-                  NOM
-                  <input className="formControl"
+          <div className="generalFormGroup">
+              <label className="generalFormLabel">
+                  lastname
+                  <input className="generalFormControl"
                       name="name"
                       type="text"
                       autoFocus
@@ -104,10 +104,10 @@ class AddCharacterPageComponent extends Component {
                   />
               </label>
           </div>
-          <div className="formGroup">
-              <label className="formLabel">
-                  PRENOM
-                  <input className="formControl"
+          <div className="generalFormGroup">
+              <label className="generalFormLabel">
+                  firstname
+                  <input className="generalFormControl"
                       name="firstName"
                       type="text"
                       ref={node => {
@@ -116,10 +116,10 @@ class AddCharacterPageComponent extends Component {
                   />
               </label>
           </div>
-          <div className="formGroup">
-              <label className="formLabel">
-                  DATE DE NAISSANCE
-                  <input className="formControl"
+          <div className="generalFormGroup">
+              <label className="generalFormLabel">
+                  birth date
+                  <input className="generalFormControl"
                       name="birthDate"
                       type="date"
                       ref={node => {
@@ -128,10 +128,10 @@ class AddCharacterPageComponent extends Component {
                   />
               </label>
           </div>
-          <div className="formGroup">
-              <label className="formLabel">
-                  LIEU DE NAISSANCE
-                  <input className="formControl"
+          <div className="generalFormGroup">
+              <label className="generalFormLabel">
+                  birth place
+                  <input className="generalFormControl"
                       name="birthPlace"
                       type="text"
                       ref={node => {
@@ -140,10 +140,10 @@ class AddCharacterPageComponent extends Component {
                   />
               </label>
           </div>
-          <div className="formGroup">
-              <label className="formLabel">
-                  LIEU DE RESIDENCE
-                  <input className="formControl"
+          <div className="generalFormGroup">
+              <label className="generalFormLabel">
+                  living place
+                  <input className="generalFormControl"
                       name="livingPlace"
                       type="text"
                       ref={node => {
@@ -152,10 +152,10 @@ class AddCharacterPageComponent extends Component {
                   />
               </label>
           </div>
-          <div className="formGroup">
-              <label className="formLabel">
-                  GENRE
-                  <input className="formControl"
+          <div className="generalFormGroup">
+              <label className="generalFormLabel">
+                  gender
+                  <input className="generalFormControl"
                       name="gender"
                       type="text"
                       ref={node => {
@@ -164,10 +164,10 @@ class AddCharacterPageComponent extends Component {
                   />
               </label>
           </div>
-          <div className="formGroup">
-              <label className="formLabel">
-                  TAILLE
-                  <input className="formControl"
+          <div className="generalFormGroup">
+              <label className="generalFormLabel">
+                  size
+                  <input className="generalFormControl"
                       name="size"
                       type="number"
                       step="1"
@@ -177,10 +177,10 @@ class AddCharacterPageComponent extends Component {
                   />
               </label>
           </div>
-          <div className="formGroup">
-              <label className="formLabel">
-                  CORPULENCE
-                  <input className="formControl"
+          <div className="generalFormGroup">
+              <label className="generalFormLabel">
+                  corpulence
+                  <input className="generalFormControl"
                       name="corpulence"
                       type="text"
                       ref={node => {
@@ -189,10 +189,10 @@ class AddCharacterPageComponent extends Component {
                   />
               </label>
           </div>
-          <div className="formGroup">
-              <label className="formLabel">
-                  PASSÉ
-                  <textarea className="formControl"
+          <div className="generalFormGroup">
+              <label className="generalFormLabel">
+                  past
+                  <textarea className="generalFormControl"
                       name="past"
                       type="text"
                       ref={node => {
@@ -213,9 +213,9 @@ class AddCharacterPageComponent extends Component {
         return (
             <div>
               <NavbarComponent></NavbarComponent>
-              <div className="containerCharacterAdd">
-                <div className="containerTitreAjoutPersonnage">
-                  <Link className="linkAdd" to="/character">
+              <div className="containerCharacterAdd contenu">
+                <div className="containerTitreAjout">
+                  <Link className="linkAdd" to="/projects">
                     <IosArrowBack className="btnMenu" color="#E30549" fontSize="30px"></IosArrowBack>
                   </Link>
                   <p>Ajout Personnage</p>

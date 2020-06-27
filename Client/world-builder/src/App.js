@@ -10,8 +10,9 @@ import UserHomeComponent from './components/user/UserHome'
 import RegisterComponent from './components/user/Register';
 import AddProjectPageComponent from './components/project/AddProjectPage';
 import AddCharacterPageComponent from './components/character/AddCharacterPage';
+import AddScenarioPageComponent from './components/scenario/AddScenarioPage';
 import DetailProjectPageComponent from './components/project/DetailProjectPage';
-import DetailCharacterPageComponent from './components/project/DetailProjectPage';
+import DetailCharacterPageComponent from './components/character/DetailCharacterPageComponent';
 
 //import requiresAuth from './components/requiresAuth'
 
@@ -115,6 +116,8 @@ class App extends Component {
               <Route exact path="/character/add/:id" component={AddCharacterPageComponent}>
               </Route>
 
+              <Route exact path="/scenario/add/:id" component={AddScenarioPageComponent}>
+              </Route>
               
           {/*</Route>*/}
 

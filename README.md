@@ -29,11 +29,16 @@ Lancement :
 	getAll
 	mutation createProject (avec un userId)
 	mutation deleteProject
+	getCharactersForProject
+	getScenarioForProject
 
 - Character :
 	getAll
 	mutation createCharacter (avec un projectId)
 	mutation deleteCharacter
+
+- Scenario :
+	mutation createScenario (avec un projectId)
 
 
 ###Client :
@@ -42,8 +47,9 @@ Lancement :
 
 - formulaire d'ajout de projet
 - listing des projets
+- listing des personnages d'un projet
 
-- formulaire d'ajout de personnage ?
+- formulaire d'ajout de personnage
 
 
 A VOIR :

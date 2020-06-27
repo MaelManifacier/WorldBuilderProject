@@ -50,16 +50,23 @@ function CheckConfig() {
     return <span className="status-ok">OK</span>
 }*/
 
-function DeleteProject(project) {
-    console.log(project._id)
-    const [{ loading, error }] = useMutation(DELETE_PROJECT);
+function DeleteProject(projectID) {
+    console.log(projectID)
+    const [deleteProject, { loading, error }] = useMutation(DELETE_PROJECT);
+    deleteProject({ variables: { projectID: projectID } });
 
     if (loading) return <div>
             Loading
         </div>
 
     if (error) return `ERROR : ${error.message}`
-    return null
+    
+    return <div>
+        <div onClick={() => DeleteProject(projectID)}>
+            delete
+        </div>
+    </div>
+
 }
 
 function ProjectList() {
@@ -74,8 +81,8 @@ function ProjectList() {
     //sinon création de la liste
     return (
         <ul className="projectsListDiv">
-            { data.projects.map (project => 
-            <li className="projectCard elementCard">
+            { data.projects.map ((project, number) => 
+            <li key={number.toString()} className="projectCard elementCard">
                     <div className="row1ProjectCard">
                         <div className="titleProjectCard">
                             <Link className="linkToProject" to={{
@@ -84,7 +91,7 @@ function ProjectList() {
                                 }}>
                                 <p>{project.name}</p>
                             </Link>
-                            <div onClick={() => DeleteProject({project})}>
+                            <div onClick={() => DeleteProject(project._id)}>
                                 delete
                             </div>
                         </div>
@@ -116,7 +123,7 @@ class ProjectsHomePageComponent extends Component {
     render() {
         return <div>
             <NavbarComponent></NavbarComponent>
-            <div className="contenuProjectsHomePage">
+            <div className="contenuProjectsHomePage contenu">
                 <div className="titleLine">
                     <div className="title">
                         YOUR PROJECTS

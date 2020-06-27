@@ -86,7 +86,7 @@ export const resolvers = {
         ignore: ignoredFields,
         returnDate: true
       })*/
-      return await Character.find({_id}).populate('family')
+      return await Character.findOne({_id}).populate('family')
     },
   },
   Mutation: {

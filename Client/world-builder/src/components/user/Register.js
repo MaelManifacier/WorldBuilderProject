@@ -44,7 +44,7 @@ function AddAccount() {
     }
   
     return (
-      <div>
+      <div className="contenu">
         <form className="form"
           onSubmit={e => {
             e.preventDefault();

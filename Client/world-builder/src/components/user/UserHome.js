@@ -6,7 +6,7 @@ class UserHomeComponent extends Component {
     render() {
         return <div>
             <NavbarComponent></NavbarComponent>
-            <div className="contenuPageUserHome">
+            <div className="contenuPageUserHome contenu">
                 <div className="profileDiv">
                     <div className="lines">
                         <div className="linexs"></div>

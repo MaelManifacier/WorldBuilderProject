@@ -10,7 +10,7 @@ class HomePageComponent extends Component {
     render() {
         return <div>
             <NavbarComponent></NavbarComponent>
-            <div className="contenuHomePage">
+            <div className="contenuHomePage contenu">
                 {/* 
                 <h1>Bienvenue sur WorldBuilder !</h1>
                 <div className="descriptionApp">
@@ -81,6 +81,7 @@ class HomePageComponent extends Component {
                 </div>
 
                 <div className="conteneurLog">
+                    <Link to="/projects"> &#62; Go to your projects</Link>
                     <Link to="/register"> &#62; create your account</Link>
                     <Link to="/login"> &#62; log in</Link>
                 </div>

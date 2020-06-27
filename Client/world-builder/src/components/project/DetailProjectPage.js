@@ -46,6 +46,16 @@ const GET_CHARACTERS = gql `
   }
 `
 
+const GET_SCENARIOS = gql `
+    query getScenariosForProject($id: ID!) {
+        projectScenarios(_id: $id) {
+        _id
+        description
+        projectID
+        }
+  }
+`
+
 
 class DetailProjectPageComponent extends Component {
     constructor(props) {
@@ -55,6 +65,7 @@ class DetailProjectPageComponent extends Component {
         }
         this.getProject = this.getProject.bind(this);
         this.getCharacters = this.getCharacters.bind(this);
+        this.getScenarios = this.getScenarios.bind(this);
     }
 
     getCharacters(){
@@ -67,8 +78,8 @@ class DetailProjectPageComponent extends Component {
         if (error) return `ERROR : ${error.message}`
 
         return <div className="charactersCard elementCard">
-            { data.projectCharacters.map (character => 
-                <div>
+            { data.projectCharacters.map ((character, number) => 
+                <div key={number.toString()}>
                     <Link className="linkToProject" to={{
                                 pathname: `/detailCharacter/${character._id}`,
                                 state: { id: character._id }
@@ -88,6 +99,27 @@ class DetailProjectPageComponent extends Component {
         </div>
     }
 
+    getScenarios() {
+        const { loading, error, data } = useQuery(GET_SCENARIOS, {
+            variables: { id : this.state.id }
+        })
+        if (loading) return <div>
+            Loading
+        </div>
+        if (error) return `ERROR : ${error.message}`
+
+        console.log(data)
+
+        return <div className="scenariosCard elementCard">
+            { data.projectScenarios.map ((project, number) => 
+                <div key={number.toString()}>
+                    <p>{project.description}</p>
+                    <hr className="line"/>
+                </div>
+            )}
+        </div>
+    }
+
     getProject(){
         const { loading, error, data } = useQuery(GET_PROJECT, {
             variables: { id : this.state.id }
@@ -98,7 +130,7 @@ class DetailProjectPageComponent extends Component {
         if (error) return `ERROR : ${error.message}`
     
         return <div>
-            <div className="containerProjectDetail">
+            <div className="containerProjectDetail contenu">
                 <div className="containerTitreProjectDetail">
                     <Link className="linkAdd" to="/projects">
                         <IosArrowBack className="btnMenu" color="#E30549" fontSize="30px"></IosArrowBack>
@@ -108,7 +140,7 @@ class DetailProjectPageComponent extends Component {
                     <div className="btnAddProject dropdown">
                         
                         <IosAdd className="btnMenu" color="#E30549" fontSize="42px"></IosAdd>
-                        <div class="dropdown-content">
+                        <div className="dropdown-content">
                             <Link className="linkToAddCharacter" to={{
                                 pathname: `/character/add/${data.project._id}`,
                                 state: { id: data.project._id }
@@ -128,6 +160,9 @@ class DetailProjectPageComponent extends Component {
             </div>
             <h4 className="title4">CHARACTERS</h4>
             <this.getCharacters></this.getCharacters>
+
+            <h4 className="title4">SCENARIOS</h4>
+            <this.getScenarios></this.getScenarios>
         </div>
     }
 

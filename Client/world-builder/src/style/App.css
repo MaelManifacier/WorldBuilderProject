@@ -44,6 +44,10 @@ body {
   color: whitesmoke;*/
 }
 
+.contenu {
+  padding-top: 60px;
+}
+
 .background-color-general {
   background-color: #393E41;
   color: whitesmoke;
@@ -57,4 +61,40 @@ body {
 }
 .blue {
   background-color: #69A6D5;
+}
+
+.title {
+  font-weight: 300;
+}
+
+
+/* - - - general form - - - */
+.generalForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh;
+}
+
+.generalForm .generalFormGroup {
+  display: flex;
+  min-width: 40vh;
+}
+
+.generalFormLabel {
+  margin: .4em;
+  font-weight: 300;
+  color: rgb(44, 44, 44);
+  display: flex;
+  flex-direction: column;
+}
+
+.generalFormControl {
+  width: 60vw;
+  padding: .4em 0;
+  padding-right: 4em;
+  margin-top: .2em;
+  border: 1px solid #DCDCDC;
+  background-color: #DCDCDC;
 }

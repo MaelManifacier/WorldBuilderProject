@@ -108,8 +108,8 @@ class AddProjectPageComponent extends Component {
     render() {
         return <div>
             <NavbarComponent></NavbarComponent>
-            <div className="containerProjectAdd">
-              <div className="containerTitreAjoutProjet">
+            <div className="containerProjectAdd contenu">
+              <div className="containerTitreAjout">
                 <Link className="linkAdd" to="/projects">
                   <IosArrowBack className="btnMenu" color="#E30549" fontSize="30px"></IosArrowBack>
                 </Link>

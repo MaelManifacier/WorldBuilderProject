@@ -8,7 +8,7 @@ import './Navigation.css'
 class SideBarComponent extends Component {
     render() {
         return (
-            <List className="sideBar" disablePadding dense>
+            <List className="sideBar contenu" disablePadding dense>
               <ListItem button>
                 <Link className="btnLink" to="/userHome">
                   <ListItemText>PROFILE</ListItemText>

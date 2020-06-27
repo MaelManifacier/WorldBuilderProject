@@ -130,6 +130,29 @@ query getCharactersForProject {
   }
 }
 
+query getCharacter{
+  character(_id: "5ef37da3699d13463cdbdaef") {
+    name
+    firstName
+    birthDate
+    birthPlace
+    livingPlace
+    gender
+    size
+    corpulence
+    traits
+    faults
+    activities
+    characteristics
+    past
+    aims
+    family {
+      _id
+    }
+    projectID
+  }
+}
+
 query getScenariosForProject {
   projectScenarios(_id: "5ee670361261f824d0b3c59f") {
     _id
