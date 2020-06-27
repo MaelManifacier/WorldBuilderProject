@@ -11,6 +11,7 @@ import RegisterComponent from './components/user/Register';
 import AddProjectPageComponent from './components/project/AddProjectPage';
 import AddCharacterPageComponent from './components/character/AddCharacterPage';
 import DetailProjectPageComponent from './components/project/DetailProjectPage';
+import DetailCharacterPageComponent from './components/project/DetailProjectPage';
 
 //import requiresAuth from './components/requiresAuth'
 
@@ -83,35 +84,38 @@ class App extends Component {
         logout: this.logout}}>
       <div className="App">
         <Switch>
-          <Route path="/login">
+          <Route exact path="/login">
             <LoginComponent />
           </Route>
 
-          <Route path="/register">
+          <Route exact path="/register">
             <RegisterComponent />
           </Route>
 
           {/* ProjectsHomePage : liste des projets d'un utilisateur 
           <Route path="/app" component={requiresAuth(App)}>*/}
-              <Route path="/projects">
+              <Route exact path="/projects">
                 <ProjectsHomePageComponent />
               </Route>
 
-              <Route path="/userHome">
+              <Route exact path="/userHome">
                 <UserHomeComponent />
               </Route>
 
-              <Route path="/addProject">
+              <Route exact path="/addProject">
                 <AddProjectPageComponent />
               </Route>
 
-              <Route path="/project/:id">
-                <DetailProjectPageComponent />
+              <Route exact path="/detailCharacter/:id" component={DetailCharacterPageComponent}>
               </Route>
 
-              <Route path="/character/add">
-                <AddCharacterPageComponent />
+              <Route exact path="/project/:id" component={DetailProjectPageComponent}>
               </Route>
+
+              <Route exact path="/character/add/:id" component={AddCharacterPageComponent}>
+              </Route>
+
+              
           {/*</Route>*/}
 
           {!this.tokenAuth && 

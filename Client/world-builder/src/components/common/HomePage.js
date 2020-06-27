@@ -53,7 +53,7 @@ class HomePageComponent extends Component {
 
                 <div className="titleDiv">
                     <div className="trait"></div>
-                    <div className="titleAccueil">BIENVENUE SUR <span>WORLDBUILDER</span></div>
+                    <div className="titleAccueil">BIENVENUE SUR <span id="worldbuilder">WORLDBUILDER</span></div>
                     <div className="trait"></div>
                 </div>
 

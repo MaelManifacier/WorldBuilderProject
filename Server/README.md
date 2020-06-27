@@ -59,6 +59,18 @@ query getAllProjects {
   }
 }
 
+query getProject {
+  project(_id: "5ee670361261f824d0b3c59f"){
+    _id
+    name
+    description
+    characters {
+      name
+    }
+    userID
+  }
+}
+
 query getAllCharacters {
   characters{
     _id
@@ -83,6 +95,48 @@ query getAllCharacters {
   }
 }
 
+
+query getProjectsForUser {
+  userProjects(_id: "5ee3cc5124b880219c7bb60f") {
+    _id
+    name
+    description
+    userID
+  }
+}
+
+
+query getCharactersForProject {
+  projectCharacters(_id: "5ee670361261f824d0b3c59f") {
+    _id
+    name
+    firstName
+    birthDate
+    birthPlace
+    livingPlace
+    gender
+    size
+    corpulence
+    traits
+    faults
+    activities
+    characteristics
+    past
+    aims
+    family {
+      _id
+    }
+    projectID
+  }
+}
+
+query getScenariosForProject {
+  projectScenarios(_id: "5ee670361261f824d0b3c59f") {
+    _id
+    description
+    projectID
+  }
+}
 
 # authentification
 query auth {
@@ -153,6 +207,15 @@ mutation createCharacter {
     }
 }
 
+mutation createScenario {
+    createScenario(description: "voilà un scénario très détaillé", projectID: "5ee670361261f824d0b3c59f") 
+    {
+        _id
+        description
+        projectID
+    }
+}
+
 mutation deleteProject {
   deleteProject(_id: "5ed7d098b908833738430dd9") {}
 }
@@ -169,6 +232,7 @@ mutation deleteCharacter {
 
 LES REQUETES QUI NE FONCTIONNENT PAS :
 
+(fonctionne avec input)
 mutation createUser {
   createUser(pseudo: "unPseudo", password: "leMotDePasse", mail: "leMail@gmail.com") {
     pseudo
@@ -176,6 +240,7 @@ mutation createUser {
   }
 }
 
+(pas besoin d'ajouter des projects dans user, on a un idUser dans les projects)
 mutation addProjectToUser {
   addProjectToUser(_id: "5ed7ce331e7ea628bca195ca", project: {name: "leProjet", description: "uneDescription yes", userID: "5ed7ce331e7ea628bca195ca"} ) {
     pseudo

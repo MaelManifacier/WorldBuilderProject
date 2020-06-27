@@ -20,7 +20,7 @@ export const typeDef = `
     }
 
     extend type Mutation {
-        createScenario(description: String!, projectID : ID!): Boolean
+        createScenario(description: String!, projectID : ID!): Scenario
         createScenarioWithInput(input: ScenarioInput!): Scenario
         deleteScenario(_id: ID!): Boolean
         updateScenario(_id: ID!, description: String!): Scenario
@@ -44,8 +44,13 @@ export const resolvers = {
       },
       Mutation: {
         createScenario: async (root, args, context, info) => {
-          await Scenario.create(args);
-          return Scenario.description;
+          //return Scenario.description;
+          try {
+            let response = await Scenario.create(args);
+            return response;
+          } catch(e) {
+            return e.message;
+          }
         },
         createScenarioWithInput: async (root, { input }, context, info) => {
           return Scenario.create(input);

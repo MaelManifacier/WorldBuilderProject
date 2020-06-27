@@ -75,7 +75,7 @@ function ProjectList() {
     return (
         <ul className="projectsListDiv">
             { data.projects.map (project => 
-            <li className="projectCard">
+            <li className="projectCard elementCard">
                     <div className="row1ProjectCard">
                         <div className="titleProjectCard">
                             <Link className="linkToProject" to={{

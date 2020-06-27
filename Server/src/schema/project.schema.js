@@ -1,4 +1,6 @@
 import {Project} from "../models/Project";
+import {Character} from "../models/Character";
+import {Scenario} from "../models/Scenario";
 //Mock les data
 //const dummy = require('mongoose-dummy');
 //const ignoredFields = ['_id','created_at', '__v', /detail.*_info/];
@@ -33,6 +35,8 @@ export const typeDef = `
     projectSchemaAssert: String
     projects: [Project]
     project(_id: ID!): Project
+    projectCharacters(_id: ID!): [Character]
+    projectScenarios(_id: ID!): [Scenario]
   }
 
   extend type Mutation {
@@ -68,6 +72,14 @@ export const resolvers = {
         returnDate: true
       })*/
       return await Project.findOne({_id}).populate('characters')
+    },
+    projectCharacters : async(root, { _id }, context, info) => {
+      const characters = await Character.find({ projectID: _id }).exec();
+      return characters;
+    },
+    projectScenarios : async(root, { _id }, context, info) => {
+      const scenarios = await Scenario.find({ projectID: _id }).exec();
+      return scenarios;
     },
   },
   Mutation: {

@@ -40,6 +40,30 @@
     margin: 1vh 0;
 }
 
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #F9F9F9;
+    min-width: 160px;
+    margin: 2vh 5vw 0 0;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    display: block;
+    padding: 1em;
+    text-decoration: none;
+    color: black;
+}
+.dropdown-content a:hover {background-color: #ddd;}
+.dropdown:hover .dropdown-content {display: block;}
+
+
 /* - - - Bouton Ajout projet - - - */
 .btnAddProject {
     margin: 1vh 2vw 0vw;
@@ -60,10 +84,7 @@
     scroll-snap-type: x proximity;
 }
 
-.projectCard {
-    width: 300px;
-    height: 180px;
-    /*border: 1px solid #d6d6d6;*/
+.elementCard {
     border-radius: 2px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
@@ -72,8 +93,13 @@
     -webkit-box-shadow: 2px 3px 0px 0px rgba(237,234,237,1);
     -moz-box-shadow: 2px 3px 0px 0px rgba(237,234,237,1);
     box-shadow: 0px 3px 10px 0px rgba(237,234,237,1);
-    
-    margin: 1vh 2vw;
+}
+
+.projectCard {
+    width: 300px;
+    height: 170px;
+    /*border: 1px solid #d6d6d6;*/
+    margin: 2vh 2vw;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -90,7 +116,7 @@
     flex-direction: column;
     justify-content: space-around;
     padding-bottom: 2vw;
-    background-color: #B796AC; /* #44BBA4 #a2caca */
+    background-color: #E6E6E6; /* #B796AC #44BBA4 #a2caca */
     padding: 2vh 4vw .2vh;
 }
 .titleProjectCard {
@@ -107,7 +133,7 @@
 
 .titleProjectCard div {
     flex: 1;
-    color: rgb(255, 255, 255);
+    color: rgb(160, 21, 21);
     font-size: 14px;
 }
 
@@ -129,14 +155,14 @@
     width: 60px;
     height: 2px;
     margin: .6vh 0;
-    background-color: whitesmoke;
+    background-color: #4A4A4A;
 }
 
 .descProjectCard {
     flex: 2.5;
     color: #4A4A4A;
     font-size: 14px;
-    background-color: #B796AC; /* #a2caca */
+    background-color: #E6E6E6; /* #E7E2D9 #a2caca */
     padding: 0vh 4vw .2vh;
 }
 
@@ -214,4 +240,42 @@
 }
 .titleProjectDetail {
     flex: 4;
+}
+
+.descriptionProjectDetail {
+    padding: .2em .5em;
+    line-height: 1.5;
+    margin: 20px 20px;
+    
+    -webkit-box-shadow: 2px 3px 0px 0px rgba(237,234,237,1);
+    -moz-box-shadow: 2px 3px 0px 0px rgba(237,234,237,1);
+    box-shadow: 0px 3px 10px 0px rgba(237,234,237,1);
+}
+
+.title4 {
+    font-weight: 300;
+    margin: 3vh 5vw 1vh;
+}
+
+/* - - - Character card in project detail - - - */
+.charactersCard {
+    margin: 0 5vw;
+}
+.characterCardRow {
+    display: flex;
+}
+.characterCardRow :nth-child(1) {
+    flex: 2;
+    margin-left: 2em;
+}
+.characterCardRow :nth-child(2) {
+    flex : 1;
+}
+
+
+.line {
+    background-color: whitesmoke;
+    border: none;
+    margin: 0 auto;
+    width: 80%;
 }

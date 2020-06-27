@@ -17,7 +17,7 @@ Lancement :
 ## Fonctionnalités :
 
 ###Server :
-	Pour voir les query et mutations à tester, voir le readme.md présent dans le dossier Server
+	Pour voir les query et mutations directement à tester, voir le readme.md présent dans le dossier Server
 - User :
 	getAll
 	getProjectsForUser

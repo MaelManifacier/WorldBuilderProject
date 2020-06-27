@@ -22,13 +22,16 @@
     font-weight: 300;
     color: rgb(44, 44, 44);
 }
+#worldbuilder {
+    color: green;
+}
 
 @media screen and (max-width: 8in) {
     .trait {
         width: 10vw;
     }
     .titleAccueil {
-        font-size: 18px;
+        font-size: 16px;
     }
 }
 
