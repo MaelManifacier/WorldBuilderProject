@@ -230,6 +230,21 @@ mutation createCharacter {
     }
 }
 
+mutation createScenario {
+    createScenario(title: "Un title de scenario", description: "hier j'ai mangé des nouilles", projectID: "5ee670361261f824d0b3c59f") 
+    {
+        _id
+      	title
+        description
+        projectID
+    }
+}
+
+
+- - -
+
+EDIT :
+
 mutation editCharacterWithInput {
     updateCharacterWithInput( input : { _id: "5ef37da3699d13463cdbdaef", name: "Henri", firstName: "FirstnamePerso", birthDate:"01/01/2020", birthPlace: "ici", livingPlace: "pas beaucoup plus loin", 
       gender: "F", size: 150, corpulence: "fat", past: "hier j'ai mangé des nouilles", projectID: "5ee670361261f824d0b3c59f"}) 
@@ -266,47 +281,44 @@ mutation editCharacter {
     }
 }
 
-mutation createScenario {
-    createScenario(description: "voilà un scénario très détaillé", projectID: "5ee670361261f824d0b3c59f") 
-    {
-        _id
-        description
-        projectID
-    }
-}
+
+- - -
+
+DELETE :
 
 mutation deleteProject {
-  deleteProject(_id: "5ed7d098b908833738430dd9") {}
+  deleteProject(_id: "5ed7d098b908833738430dd9") {
+
+  }
 }
 
 mutation deleteUser {
-  deleteUser(_id: "5ee37f5f6551f92958aea197") {}
+  deleteUser(_id: "5ee37f5f6551f92958aea197") {
+    
+  }
 }
 
 mutation deleteCharacter {
-  deleteCharacter(_id: "5ef37a7c11e3fc4640fdde77")
-}
-
-
-
-LES REQUETES QUI NE FONCTIONNENT PAS :
-
-(fonctionne avec input)
-mutation createUser {
-  createUser(pseudo: "unPseudo", password: "leMotDePasse", mail: "leMail@gmail.com") {
-    pseudo
-    mail
+  deleteCharacter(_id: "5ef75dad446e4f15b8bc6b85") {
+    _id
+        name
+        firstName
+        birthDate
+        birthPlace
+        livingPlace
+        gender
+        size
+        corpulence
+        past
+        projectID
   }
 }
 
-(pas besoin d'ajouter des projects dans user, on a un idUser dans les projects)
-mutation addProjectToUser {
-  addProjectToUser(_id: "5ed7ce331e7ea628bca195ca", project: {name: "leProjet", description: "uneDescription yes", userID: "5ed7ce331e7ea628bca195ca"} ) {
-    pseudo
-    mail
-    projects {
-      _id
-    }
+mutation deleteScenario {
+  deleteScenario(_id: "5ef908cb5b0a7d676c4d9405") {
+    _id
+    title
+    description
+    projectID
   }
 }
-

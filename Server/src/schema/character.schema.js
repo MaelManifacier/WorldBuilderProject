@@ -3,24 +3,6 @@ import {Character} from "../models/Character";
 const dummy = require('mongoose-dummy');
 const ignoredFields = ['_id','created_at', '__v', /detail.*_info/];
 
-/* OLD
-type Task {
-  name: String
-  description: String
-  duration: String
-  Status: Int
-}
-
-input TaskInput{
-  name: String
-  description: String
-  duration: String
-  Status: Int
-}
-
-*/
-
-
 export const typeDef = `
 scalar Date
 

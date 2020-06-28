@@ -38,7 +38,7 @@ export const typeDef = `
     createUser(pseudo: String!, password: String!, mail: String!): User
     createUserWithInput(input: UserInput!): User
     addProjectToUser(_id: ID!, project: ProjectInput!): User
-    deleteUser(_id: ID!): Boolean
+    deleteUser(_id: ID!): User
     updateUser(_id: ID!,input: UserInput!): User
     login(mail: String!, password: String!): UserLoginInfos
   }
@@ -115,7 +115,8 @@ export const resolvers = {
       return user;
     },
     deleteUser: async (root, { _id }, context, info) => {
-      return User.remove({ _id });
+      //return User.remove({ _id });
+      return await User.findByIdAndRemove({ _id });
     },
     updateUser: async (root, { _id, input }) => {
       return User.findByIdAndUpdate(_id, input, { new: true });
