@@ -1,13 +1,16 @@
 .row1CharacterDetail {
   display: flex;
+  align-items: center;
+  margin: 0 5vw;
 }
 
 .row1CharacterDetail div {
   display: flex;
+  flex: 5;
 }
 
-.row1CharacterDetail div h4 {
-  padding: .5em;
+.row1CharacterDetail h4 {
+  flex: 1;
 }
 
 .triggerCollapsible {
@@ -31,10 +34,4 @@
   -webkit-box-shadow: 2px 3px 0px 0px #edeaed;
   -moz-box-shadow: 2px 3px 0px 0px #edeaed;
   box-shadow: 0px 3px 10px 0px #edeaed;
-}
-
-@media screen and (min-width: 8in) {
-  .Collapsible {
-    margin: 0 2vw;
-  }
 }

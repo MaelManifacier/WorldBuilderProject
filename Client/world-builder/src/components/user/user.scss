@@ -23,12 +23,16 @@
 }
 
 .formControl {
+    width: 60vw;
     padding: .6em 1.5em;
     padding-right: 4em;
     margin-top: 1em;
     border: 1px solid #DCDCDC;
     background-color: #DCDCDC;
 }
+
+
+/* - - - UserHome - - - */
 
 .loginOrCreateAccountDiv {
     display: flex;
@@ -58,7 +62,7 @@
 .profileDiv {
     display: flex;
     justify-content: space-around;
-    padding: 10vh 0;
+    padding: 6vh 0;
 }
 
 .imgUser {

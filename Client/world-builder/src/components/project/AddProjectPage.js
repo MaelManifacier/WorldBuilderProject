@@ -76,7 +76,7 @@ function AddProject() {
         <div className="formGroup">
             <label className="formLabel">
                 DESCRIPTION
-                <input className="formControl"
+                <textarea className="formControl"
                     name="description"
                     type="text"
                     ref={node => {

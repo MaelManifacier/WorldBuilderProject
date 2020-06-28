@@ -1,0 +1,129 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
+.form .formGroup {
+  display: flex;
+  flex-direction: column;
+  /*max-width: 80vw;*/
+  min-width: 40vh;
+  align-items: flex-start;
+}
+
+.formLabel {
+  margin: .5em 0;
+  font-weight: 300;
+  color: #2c2c2c;
+  display: flex;
+  flex-direction: column;
+}
+
+.formControl {
+  width: 60vw;
+  padding: .6em 1.5em;
+  padding-right: 4em;
+  margin-top: 1em;
+  border: 1px solid #DCDCDC;
+  background-color: #DCDCDC;
+}
+
+/* - - - UserHome - - - */
+.loginOrCreateAccountDiv {
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+}
+
+.btnSubmit {
+  border: 1px solid #2c2c2c;
+  background-color: transparent;
+  margin: 1em 1em 1em 0;
+  padding: .8em 1.2em;
+  letter-spacing: .2em;
+  color: black;
+}
+
+.loginOrCreateAccountDiv a {
+  text-decoration: none;
+  color: black;
+}
+
+/* - - - UserHomePage - - - */
+.contenuPageUserHome {
+  min-height: 50vh;
+}
+
+.profileDiv {
+  display: flex;
+  justify-content: space-around;
+  padding: 6vh 0;
+}
+
+.imgUser {
+  width: 0;
+  height: 0;
+  border: 25vw solid transparent;
+  border-bottom-color: #44BBA4;
+  position: relative;
+  top: -25vw;
+}
+
+.imgUser:after {
+  content: '';
+  position: absolute;
+  left: -25vw;
+  top: 25vw;
+  width: 0;
+  height: 0;
+  border: 25vw solid transparent;
+  border-top-color: #44BBA4;
+}
+
+.lines {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.lines div {
+  height: 2px;
+  background-color: #707070;
+}
+
+.linexs {
+  width: 2vw;
+}
+
+.linem {
+  width: 5vw;
+}
+
+.linel {
+  width: 8vw;
+}
+
+@media screen and (min-width: 8in) {
+  .imgUser {
+    width: 0;
+    height: 0;
+    border: 10vw solid transparent;
+    border-bottom-color: #44BBA4;
+    position: relative;
+    top: -10vw;
+  }
+  .imgUser:after {
+    content: '';
+    position: absolute;
+    left: -10vw;
+    top: 10vw;
+    width: 0;
+    height: 0;
+    border: 10vw solid transparent;
+    border-top-color: #44BBA4;
+  }
+}

@@ -3,15 +3,15 @@ import NavbarComponent from '../navigation/Navbar.js'
 import IosArrowBack from 'react-ionicons/lib/IosArrowBack'
 import { Link, Redirect } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { createBrowserHistory } from 'history';
-import DetailProjectPageComponent from '../project/DetailProjectPage';
 
-const ADD_CHARACTER = gql `
-  mutation createCharacter ($name: String!, $firstName: String!, $birthDate: Date!, $birthPlace: String!, $livingPlace: String!, 
-    $gender: String!, $size: Int!, $corpulence: String!, $past: String!, $projectID: ID!)
+const EDIT_CHARACTER = gql `
+  mutation editCharacter ($id: ID!, $name: String, $firstName: String, $birthDate: Date, $birthPlace: String, $livingPlace: String, 
+    $gender: String, $size: Int, $corpulence: String, $past: String, $projectID: ID)
   {
-    createCharacter(name: $name, firstName: $firstName, birthDate: $birthDate, birthPlace: $birthPlace, livingPlace: $livingPlace, 
+    updateCharacter(id: $id, name: $name, firstName: $firstName, birthDate: $birthDate, birthPlace: $birthPlace, livingPlace: $livingPlace, 
     gender: $gender, size: $size, corpulence: $corpulence, past: $past, projectID: $projectID) 
     {
         _id
@@ -29,20 +29,72 @@ const ADD_CHARACTER = gql `
 }
 `
 
+const GET_CHARACTER = gql `
+query getCharacter ($id: ID!) {
+    character(_id: $id) {
+      _id
+      name
+      firstName
+      birthDate
+      birthPlace
+      livingPlace
+      gender
+      size
+      corpulence
+      traits
+      faults
+      activities
+      characteristics
+      past
+      aims
+      family {
+        _id
+      }
+      projectID
+    }
+  }
+`
+
 export const history = createBrowserHistory();
 
 
-class AddCharacterPageComponent extends Component {
+class EditCharacterPageComponent extends Component {
   constructor(props) {
     super(props);
-    //console.log(props.location.state.id)
+    this.getCharacter = this.getCharacter.bind(this)
+    this.editCharacter = this.editCharacter.bind(this)
+
     this.state = {
-        projectID: props.location.state.id
+        characterID: props.location.state.id
     }
-    this.addCharacter = this.addCharacter.bind(this)
   }
 
-  addCharacter() {
+    getCharacter(){
+        const { loading, error, data } = useQuery(GET_CHARACTER, {
+            variables: { id : this.state.id }
+        })
+        if (loading) return <div>
+            Loading
+        </div>
+        if (error) return `ERROR : ${error.message}`
+
+        // put data in state
+        this.state = {
+            name : data.character.name,
+            firstName : data,
+            birthDate : data.character.name,
+            birthPlace : data.character.name,
+            livingPlace : data.character.name,
+            gender : data.character.name,
+            size : data.character.name,
+            corpulence : data.character.name,
+            past : data.character.name,
+            projectID : data.character.name
+        }
+    }
+
+  editCharacter() {
+    let id = this.state.characterID;
     let name;
     let firstName;
     let birthDate;
@@ -52,9 +104,9 @@ class AddCharacterPageComponent extends Component {
     let size;
     let corpulence;
     let past;
-    let projectID = this.state.projectID;
+    let projectID;
 
-    const [addCharacter, { loading, error, data }] = useMutation(ADD_CHARACTER);
+    const [editCharacter, { loading, error, data }] = useMutation(EDIT_CHARACTER);
 
     if (loading) return <div>
             Loading
@@ -63,14 +115,14 @@ class AddCharacterPageComponent extends Component {
     if (error) return `ERROR : ${error.message}`
 
     if (data) {
-      let route = `/project/${projectID}`
+      let route = `/character/${id}`
       //console.log(route)
       history.push(route)
       return (
         <Redirect to={{
           pathname: route,
-          state: { id: projectID }
-        }} component={DetailProjectPageComponent}/>
+          state: { id: id }
+        }}/>
       )
     }
   
@@ -79,17 +131,18 @@ class AddCharacterPageComponent extends Component {
           <form className="generalForm"
             onSubmit={e => {
               e.preventDefault();
-              addCharacter({ variables: { name: name.value, firstName: firstName.value, birthDate: birthDate.value, birthPlace: birthPlace.value, 
+              editCharacter({ variables: { id: id, name: name.value, firstName: firstName.value, birthDate: birthDate.value, birthPlace: birthPlace.value, 
                 livingPlace: livingPlace.value, gender: gender.value, size: parseInt(size.value), corpulence: corpulence.value, past: past.value, projectID: projectID } });
-              name.value = '';
-              firstName.value = '';
-              birthDate.value = '';
-              birthPlace.value = '';
-              livingPlace.value = '';
-              gender.value = '';
-              size.value = 0;
-              corpulence.value = '';
-              past.value = '';
+              id = this.state.characterID;
+              name.value = this.state.name;
+              firstName.value = this.state.firstName;
+              birthDate.value = this.state.birthDate;
+              birthPlace.value = this.state.birthPlace;
+              livingPlace.value = this.state.livingPlace;
+              gender.value = this.state.gender;
+              size.value = this.state.size;
+              corpulence.value = this.state.corpulence;
+              past.value = this.state.past;
               projectID = this.state.projectID;
             }}>
           <div className="generalFormGroup">
@@ -219,13 +272,13 @@ class AddCharacterPageComponent extends Component {
                   <Link className="linkAdd" to="/projects">
                     <IosArrowBack className="btnMenu" color="#E30549" fontSize="30px"></IosArrowBack>
                   </Link>
-                  <p>Ajout Personnage</p>
+                  <p>Edit Character</p>
                 </div>
-                <this.addCharacter></this.addCharacter>
+                <this.editCharacter></this.editCharacter>
               </div>
             </div>
         )
     }
 }
 
-export default AddCharacterPageComponent
+export default EditCharacterPageComponent

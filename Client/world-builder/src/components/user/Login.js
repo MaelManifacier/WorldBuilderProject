@@ -30,15 +30,16 @@ function Login() {
             Loading
         </div>
 
-    if (error) return `ERROR : ${error.message}`
+    if (error) return <div></div> // `ERROR : ${error.message}`
 
     if (data) {
         localStorage.setItem('token', data.token);
+        localStorage.setItem('userID', data.userID);
         //contextType.token = data.token;
         //contextType.userId = data.userId
         //login(data.token, data.userId, data.tokenExpiration)
         return (
-            <Redirect to="/"/>
+            <Redirect to="/projects"/>
         )
     }
 

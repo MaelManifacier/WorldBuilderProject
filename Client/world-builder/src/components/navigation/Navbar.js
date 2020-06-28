@@ -9,7 +9,13 @@ class NavbarComponent extends Component {
         super(props)
         // on ajoute un état pour ouvrir ou fermer la sideBar
         this.state={
-            sideBarOpen: false
+            sideBarOpen: false,
+            isLoggedIn: false
+        }
+        let token = localStorage.getItem('token')
+        //console.log("token ", token)
+        if(token != null) {
+            this.setState({isLoggedIn : true})
         }
         this.toggleSideBar.bind(this)
     }
@@ -22,6 +28,12 @@ class NavbarComponent extends Component {
     }
 
     render() {
+        let loggedButton;
+        if(this.state.isLoggedIn) {
+            loggedButton = <Link className="btnUserProfile" to="/userHome">account</Link>
+        } else {
+            loggedButton = <Link className="btnUserProfile" to="/login">Log in</Link>
+        }
         return <div>
             <div className="navBar">
                 <a className="btnSideBar" onClick={() => this.toggleSideBar()}>
@@ -33,7 +45,7 @@ class NavbarComponent extends Component {
                     <Link className="appName" onClick={() => this.toggleSideBar()} to="/">WORLD-BUILDER</Link>
                 </div>
                 <div className="btnUserProfileDiv">
-                    <Link className="btnUserProfile" to="/login">Log in</Link>
+                    {loggedButton}
                 </div>
             </div>
             { this.state.sideBarOpen &&

@@ -13,6 +13,11 @@ import AddCharacterPageComponent from './components/character/AddCharacterPage'
 import AddScenarioPageComponent from './components/scenario/AddScenarioPage'
 import DetailProjectPageComponent from './components/project/DetailProjectPage'
 import DetailCharacterPageComponent from './components/character/DetailCharacterPageComponent'
+import EditCharacterPageComponent from './components/character/EditCharacterPage'
+import DeleteCharacterPageComponent from './components/character/DeleteCharacterPage'
+import DeleteProjectPageComponent from './components/project/DeleteProjectPage'
+
+import NotFound from './components/NotFound'
 
 //import requiresAuth from './components/requiresAuth'
 
@@ -118,6 +123,15 @@ class App extends Component {
 
               <Route exact path="/scenario/add/:id" component={AddScenarioPageComponent}>
               </Route>
+
+              <Route exact path="/character/edit/:id" component={EditCharacterPageComponent}>
+              </Route>
+
+              <Route exact path="/character/delete/:id" component={DeleteCharacterPageComponent}>
+              </Route>
+
+              <Route exact path="/project/delete/:id" component={DeleteProjectPageComponent}>
+              </Route>
               
           {/*</Route>*/}
 
@@ -136,8 +150,12 @@ class App extends Component {
           {/* ROUTE VERS / EN DERNIER */}
           {/* TJS METTRE LA ROUTE VERS / EN DERNIER */}
           {/* présentation de l'appli et liens vers authentification */}
-          <Route path="/">
+          <Route exact path="/">
             <HomePageComponent />
+          </Route>
+
+          <Route path="*">
+            <NotFound />
           </Route>
 
         </Switch>

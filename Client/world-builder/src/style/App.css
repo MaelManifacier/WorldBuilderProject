@@ -1,4 +1,3 @@
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -34,12 +33,10 @@
   }
 }
 
-
 /* - - - App - - - */
-
-
 body {
-  background-color: #F9F9F9; /*#333333;
+  background-color: #F9F9F9;
+  /*#333333;
   color: whitesmoke;*/
 }
 
@@ -55,9 +52,11 @@ body {
 .green {
   background-color: #05E339;
 }
+
 .raspberry {
   background-color: #E30549;
 }
+
 .blue {
   background-color: #69A6D5;
 }
@@ -65,7 +64,6 @@ body {
 .title {
   font-weight: 300;
 }
-
 
 /* - - - general form - - - */
 .generalForm {
@@ -84,7 +82,7 @@ body {
 .generalFormLabel {
   margin: .4em;
   font-weight: 300;
-  color: rgb(44, 44, 44);
+  color: #2c2c2c;
   display: flex;
   flex-direction: column;
 }
@@ -99,17 +97,17 @@ body {
 }
 
 /* - - - 404 - - - */
-
 .container404 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  a {
-    color: rgb(160, 21, 21);
-    text-decoration: none;
-  }
-  h4 {
-    font-weight: 400;
-  }
 }
 
+.container404 a {
+  color: #a01515;
+  text-decoration: none;
+}
+
+.container404 h4 {
+  font-weight: 400;
+}

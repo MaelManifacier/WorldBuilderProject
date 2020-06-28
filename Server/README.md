@@ -230,6 +230,42 @@ mutation createCharacter {
     }
 }
 
+mutation editCharacterWithInput {
+    updateCharacterWithInput( input : { _id: "5ef37da3699d13463cdbdaef", name: "Henri", firstName: "FirstnamePerso", birthDate:"01/01/2020", birthPlace: "ici", livingPlace: "pas beaucoup plus loin", 
+      gender: "F", size: 150, corpulence: "fat", past: "hier j'ai mangé des nouilles", projectID: "5ee670361261f824d0b3c59f"}) 
+    {
+        _id
+        name
+        firstName
+        birthDate
+        birthPlace
+        livingPlace
+        gender
+        size
+        corpulence
+        past
+        projectID
+    }
+}
+
+mutation editCharacter {
+    updateCharacter(_id: "5ef37da3699d13463cdbdaef", name: "Henri", firstName: "Philippe", birthDate:"01/01/2020", birthPlace: "ici", livingPlace: "pas beaucoup plus loin", 
+      gender: "F", size: 150, corpulence: "fat", past: "hier j'ai mangé des nouilles", projectID: "5ee670361261f824d0b3c59f") 
+    {
+        _id
+        name
+        firstName
+        birthDate
+        birthPlace
+        livingPlace
+        gender
+        size
+        corpulence
+        past
+        projectID
+    }
+}
+
 mutation createScenario {
     createScenario(description: "voilà un scénario très détaillé", projectID: "5ee670361261f824d0b3c59f") 
     {

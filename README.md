@@ -35,6 +35,7 @@ Lancement :
 - Character :
 	getAll
 	mutation createCharacter (avec un projectId)
+	mutation editCharacter
 	mutation deleteCharacter
 
 - Scenario :
@@ -48,8 +49,14 @@ Lancement :
 - formulaire d'ajout de projet
 - listing des projets
 - listing des personnages d'un projet
+- listing des scenarios d'un projet
 
 - formulaire d'ajout de personnage
+- formulaire d'ajout de scenario
+
+- page de détail d'un personnage d'un projet
+
+- 404
 
 
 A VOIR :

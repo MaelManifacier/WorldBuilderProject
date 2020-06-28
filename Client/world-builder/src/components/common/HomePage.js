@@ -81,7 +81,7 @@ class HomePageComponent extends Component {
                 </div>
 
                 <div className="conteneurLog">
-                    <Link to="/projects"> &#62; Go to your projects</Link>
+                    <Link to="/projects"> &#62; go to your projects</Link>
                     <Link to="/register"> &#62; create your account</Link>
                     <Link to="/login"> &#62; log in</Link>
                 </div>

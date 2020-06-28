@@ -45,8 +45,16 @@ type Character {
   }
 
   input CharacterInput {
+    _id: ID
     name: String
     firstName: String
+    birthDate : Date
+    birthPlace : String
+    livingPlace : String
+    gender : String
+    size : Int
+    corpulence : String
+    past : String
     projectID : ID
   }
 
@@ -59,8 +67,9 @@ type Character {
   extend type Mutation {
     createCharacter(name: String!,firstName: String!, birthDate: Date, birthPlace: String, livingPlace:String, gender:String, size:Int, corpulence:String, past:String, projectID : ID!): Character
     createCharacterWithInput(input: CharacterInput!): Character
-    deleteCharacter(_id: ID!): Boolean
-    updateCharacter(_id: ID!,input: CharacterInput!): Character
+    deleteCharacter(_id: ID!): Character
+    updateCharacterWithInput(input: CharacterInput!): Character
+    updateCharacter(_id: ID!, name: String, firstName: String, birthDate: Date, birthPlace: String, livingPlace:String, gender:String, size:Int, corpulence:String, past:String, projectID : ID): Character
   }
 
 `;
@@ -102,10 +111,14 @@ export const resolvers = {
       return Character.create(input);
     },
     deleteCharacter: async (root, { _id }, context, info) => {
-      return Character.remove({ _id });
+      //return Character.remove({ _id });
+      return await Character.findByIdAndRemove({_id});
     },
-    updateCharacter: async (root, { _id, input }) => {
-      return Character.findByIdAndUpdate(_id, input, { new: true });
+    updateCharacterWithInput: async (root, { input }) => {
+      return Character.findByIdAndUpdate(input._id, input, { new: true });
+    },
+    updateCharacter: async (root, { _id, name, firstName, birthDate, birthPlace, livingPlace, gender, size, corpulence, past, projectID }) => {
+      return Character.findByIdAndUpdate(_id, {name, firstName, birthDate, birthPlace, livingPlace, gender, size, corpulence, past, projectID}, { new: true });
     }
   },
 };
