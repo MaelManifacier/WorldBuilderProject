@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 import NavbarComponent from '../navigation/Navbar'
 import { useMutation } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
-import './user.css'
+import './user.scss'
 
 import AuthContext from '../../context/auth-context'
 

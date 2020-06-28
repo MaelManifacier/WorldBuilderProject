@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import NavbarComponent from '../navigation/Navbar';
 import { Link } from 'react-router-dom'
-import './homePage.css'
+import './homePage.scss'
 
 class HomePageComponent extends Component {
     render() {

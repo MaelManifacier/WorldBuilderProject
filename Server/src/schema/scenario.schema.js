@@ -3,12 +3,14 @@ import { Scenario } from '../models/Scenario'
 export const typeDef = `
     type Scenario {
         _id : ID!
+        title : String
         description : String
         steps : [Step] # états
         projectID : ID
     }
 
     input ScenarioInput {
+        title : String
         description: String
         projectID : ID
     }
@@ -20,10 +22,10 @@ export const typeDef = `
     }
 
     extend type Mutation {
-        createScenario(description: String!, projectID : ID!): Scenario
+        createScenario(title: String, description: String!, projectID : ID!): Scenario
         createScenarioWithInput(input: ScenarioInput!): Scenario
         deleteScenario(_id: ID!): Boolean
-        updateScenario(_id: ID!, description: String!): Scenario
+        updateScenario(_id: ID!, title: String, description: String!): Scenario
         addStepToScenario(_id: ID!, step: StepInput!): Boolean
     }
 `

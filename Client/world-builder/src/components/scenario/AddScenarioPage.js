@@ -8,10 +8,11 @@ import { createBrowserHistory } from 'history';
 import DetailProjectPageComponent from '../project/DetailProjectPage';
 
 const ADD_CHARACTER = gql `
-    mutation createScenario($description: String!, $projectID: ID!) {
-        createScenario(description: $description, projectID: $projectID) 
+    mutation createScenario($title: String!, $description: String!, $projectID: ID!) {
+        createScenario(title: $title, description: $description, projectID: $projectID) 
         {
             _id
+            title
             description
             projectID
         }
@@ -31,6 +32,7 @@ class AddScenarioPageComponent extends Component {
   }
 
   addScenario() {
+    let title;
     let description;
     let projectID = this.state.projectID;
 
@@ -59,11 +61,24 @@ class AddScenarioPageComponent extends Component {
           <form className="form"
             onSubmit={e => {
               e.preventDefault();
-              addScenario({ variables: { description: description.value, projectID: projectID } });
+              addScenario({ variables: { title: title.value, description: description.value, projectID: projectID } });
+              title.value = '';
               description.value = '';
               projectID = this.state.projectID;
             }}>
-          <div className="formGroup">
+            <div className="formGroup">
+              <label className="formLabel">
+                  TITLE
+                  <textarea className="formControl"
+                      name="title"
+                      type="text"
+                      ref={node => {
+                        title = node;
+                      }}
+                  />
+              </label>
+            </div>
+            <div className="formGroup">
               <label className="formLabel">
                   DESCRIPTION
                   <textarea className="formControl"

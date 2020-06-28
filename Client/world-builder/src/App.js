@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 // import logo from './logo.svg';
-import './style/App.css';
-import HomePageComponent from './components/common/HomePage';
+import './style/App.scss'
+import HomePageComponent from './components/common/HomePage'
 
 import { Switch, Route, Redirect } from 'react-router-dom'
-import ProjectsHomePageComponent from './components/project/ProjectsHomePage';
+import ProjectsHomePageComponent from './components/project/ProjectsHomePage'
 import LoginComponent from './components/user/Login'
 import UserHomeComponent from './components/user/UserHome'
-import RegisterComponent from './components/user/Register';
-import AddProjectPageComponent from './components/project/AddProjectPage';
-import AddCharacterPageComponent from './components/character/AddCharacterPage';
-import AddScenarioPageComponent from './components/scenario/AddScenarioPage';
-import DetailProjectPageComponent from './components/project/DetailProjectPage';
-import DetailCharacterPageComponent from './components/character/DetailCharacterPageComponent';
+import RegisterComponent from './components/user/Register'
+import AddProjectPageComponent from './components/project/AddProjectPage'
+import AddCharacterPageComponent from './components/character/AddCharacterPage'
+import AddScenarioPageComponent from './components/scenario/AddScenarioPage'
+import DetailProjectPageComponent from './components/project/DetailProjectPage'
+import DetailCharacterPageComponent from './components/character/DetailCharacterPageComponent'
 
 //import requiresAuth from './components/requiresAuth'
 

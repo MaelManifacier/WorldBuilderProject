@@ -155,7 +155,9 @@ class DetailProjectPageComponent extends Component {
 
                 </div>
             </div>
-            <div className="descriptionProjectDetail">
+
+            <h4 className="title4">DESCRIPTION</h4>
+            <div className="descriptionProjectDetail elementCard">
                 <p>{data.project.description}</p>
             </div>
             <h4 className="title4">CHARACTERS</h4>

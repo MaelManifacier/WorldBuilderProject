@@ -8,7 +8,7 @@ import IosArrowDown from 'react-ionicons/lib/IosArrowDown'
 import IosArrowUp from 'react-ionicons/lib/IosArrowUp'
 import Collapsible from 'react-collapsible'
 
-import './character.css'
+import './character.scss'
 
 const GET_CHARACTER = gql `
 query getCharacter ($id: ID!) {
@@ -76,9 +76,21 @@ class DetailCharacterPageComponent extends Component {
         </div> */
     
         return <div>
+            <div className="containerTitreAjout contenu">
+                <Link className="linkAdd" to={{
+                                pathname: `/project/${data.character.projectID}`,
+                                state: { id: data.character.projectID }
+                                }}>
+                    <IosArrowBack className="btnMenu" color="#E30549" fontSize="30px"></IosArrowBack>
+                </Link>
+                <p>Character detail</p>
+            </div>
             <div className="row1CharacterDetail">
-                <h4 className="title">{data.character.name}</h4>
-                <h4 className="title">{data.character.firstname}</h4>
+                <div>
+                    <h4 className="title">{data.character.name}</h4>
+                    <h4 className="title">{data.character.firstName}</h4>
+                </div>
+                <h4 className="title">{data.character.gender}</h4>
             </div>
             <Collapsible trigger={<Trigger/>}>
                 <p>{data.character.past}</p>
@@ -89,12 +101,6 @@ class DetailCharacterPageComponent extends Component {
     render() {
         return <div>
             <NavbarComponent></NavbarComponent>
-            <div className="containerTitreAjout contenu">
-                <Link className="linkAdd" to="/projects">
-                <IosArrowBack className="btnMenu" color="#E30549" fontSize="30px"></IosArrowBack>
-                </Link>
-                <p>Character detail</p>
-            </div>
             <this.getCharacter></this.getCharacter>
         </div>
     }

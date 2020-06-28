@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavbarComponent from '../navigation/Navbar';
-import './user.css'
+import './user.scss'
 import IosArrowBack from 'react-ionicons/lib/IosArrowBack'
 import { Link, Redirect } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';

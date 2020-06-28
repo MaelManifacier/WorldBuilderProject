@@ -7,7 +7,7 @@ import gql from 'graphql-tag';
 import NavbarComponent from '../navigation/Navbar';
 import { Link } from 'react-router-dom'
 import IosAdd from 'react-ionicons/lib/IosAdd'
-import './project.css';
+import './project.scss';
 
 
 const DELETE_PROJECT = gql `

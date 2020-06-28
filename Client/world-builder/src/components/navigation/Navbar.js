@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Navigation.css';
+import './Navigation.scss';
 import SideBarComponent from './SideBar';
 import IosMenu from 'react-ionicons/lib/IosMenu'
 

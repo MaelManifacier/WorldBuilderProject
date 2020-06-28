@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavbarComponent from '../navigation/Navbar';
-import './user.css'
+import './user.scss'
 
 class UserHomeComponent extends Component {
     render() {
